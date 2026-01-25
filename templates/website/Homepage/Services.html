@@ -1,0 +1,66 @@
+{% load static %}
+
+<section class="position-relative overflow-hidden space bg-light px-4" id="service-sec">
+  <div class="container">
+    <div class="row justify-content-lg-between justify-content-center align-items-end">
+      <div class="col-lg-7">
+        <div class="title-area text-center text-lg-start">
+          <span class="sub-title text-anime-style-2 text-dark">Evidence Based Health Services</span>
+          <h2 class="sec-title text-anime-style-3">
+            <span class="fw-normal">Dedicated support</span> for You
+          </h2>
+        </div>
+      </div>
+      <div class="col-auto">
+        <div class="sec-btn wow fadeInUp">
+          <a href="{% url 'services' %}" class="th-btn">
+            Explore All Services<i class="fa-light fa-arrow-right-long ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gy-4">
+      {# cycle through 4 placeholder images when a service has no pic #}
+       
+      {% for service in nav_services|slice:":4" %}
+        {# re-advance the cycle for each card #}
+        
+
+        <div class="col-md-6 col-xl-3">
+          <div class="service-grid wow fadeInUp" data-wow-delay=".{{ forloop.counter|add:"1" }}s">
+            <div class="box-content">
+              <div class="box-img global-img">
+                {% if service.pic %}
+                  <img src="{{ service.pic.url }}" alt="{{ service.name }}">
+                {% else %}
+                  <img src="{% static 'assets/img/service' %}/{{ svcimg }}" alt="{{ service.name }}">
+                {% endif %}
+                {# keep your video button; you can swap href if you store a video URL in model later #}
+                <a href="https://www.youtube.com/watch?v=i2pMEhEzbEs" class="play-btn popup-video">
+                  <i class="fa-solid fa-play"></i>
+                </a>
+              </div>
+
+              <h3 class="box-title">
+                <a href="{% url 'services_details' service.slug %}">{{ service.name }}</a>
+              </h3>
+
+              <p class="box-text">
+                {{ service.desc|striptags|truncatechars:120 }}
+              </p>
+
+              <a href="{% url 'services_details' service.slug %}" class="line-btn">
+                Read More <i class="fa-light fa-arrow-right-long ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <p class="text-center text-muted">No services available.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

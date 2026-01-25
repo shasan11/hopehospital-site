@@ -1,0 +1,835 @@
+/* Contact Page ---------------------------------- */
+.appointment-form {
+    background: #F2F3FC;
+    border-radius: 24px;
+    padding: 56px;
+
+    @include xl {
+        padding: 40px;
+    }
+
+    @include sm {
+        padding: 30px 20px;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    select,
+    .form-control,
+    .form-select,
+    textarea,
+    input {
+        border: 1px solid transparent;
+        height: 56px;
+        border-radius: 8px;
+
+        &:focus {
+            outline: 0;
+            box-shadow: none;
+            border-color: var(--theme-color);
+        }
+    }
+
+    .nice-select {
+        &:after {
+            right: 30px;
+            border-bottom: 2px solid $body-color;
+            border-right: 2px solid $body-color;
+        }
+
+        .option {
+            color: $title-color;
+
+            &.selected {
+                color: $theme-color !important;
+                background: $theme-color !important;
+
+                &.focus {
+                    color: $white-color !important;
+                    background: $theme-color !important;
+                }
+            }
+
+            &:hover,
+            &.focus {
+                background: $theme-color !important;
+                color: $white-color !important;
+            }
+        }
+
+        &.open {
+            .list {
+                border-bottom: 3px solid $theme-color;
+            }
+        }
+    }
+
+    &.style2 {
+        background-color: $white-color;
+
+        select,
+        .form-control,
+        .form-select,
+        textarea,
+        input {
+            background-color: $white-color;
+            border: 1px solid #DEDFE3;
+            height: 56px;
+            border-radius: 8px;
+
+            &:focus {
+                outline: 0;
+                box-shadow: none;
+                border-color: var(--theme-color);
+            }
+        }
+    }
+
+    label {
+        font-size: 18px;
+        color: $body-color;
+        margin-bottom: 25px;
+    }
+
+    .call-info .call-label {
+        color: $title-color;
+    }
+}
+
+
+.contact-form {
+    border: 1px solid #DEDFE3;
+    background-color: $white-color;
+    border-radius: 16px;
+    padding: 56px;
+    margin-left: 40px;
+
+    @include ml {
+        padding: 40px;
+    }
+
+    @include lg {
+        margin: 0;
+    }
+
+    @include sm {
+        padding: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+
+        i {
+            font-size: 14px;
+            font-weight: 300;
+            color: $body-color;
+        }
+    }
+
+    select,
+    .form-control,
+    .form-select,
+    textarea,
+    input {
+        background: transparent;
+        border: 1px solid #DEDFE3;
+        border-radius: 10px;
+        height: 60px;
+        line-height: 60px;
+
+    }
+
+    .th-btn {
+        &:hover {
+
+            &:before,
+            &:after {
+                width: 120%;
+            }
+        }
+    }
+
+    .nice-select {
+        font-size: 14px;
+        font-weight: 500;
+
+        &:after {
+            right: 30px;
+            border-bottom: 2px solid $body-color;
+            border-right: 2px solid $body-color;
+        }
+
+        .option {
+            color: $title-color;
+
+            &.selected {
+                color: $theme-color !important;
+                background: $theme-color !important;
+
+                &.focus {
+                    color: $white-color !important;
+                    background: $theme-color !important;
+                }
+            }
+
+            &:hover,
+            &.focus {
+                background: $theme-color !important;
+                color: $white-color !important;
+            }
+        }
+
+        &.open {
+            .list {
+                border-bottom: 3px solid $theme-color;
+            }
+        }
+    }
+
+    textarea.form-control,
+    textarea {
+        min-height: 200px;
+        padding-top: 16px;
+        padding-bottom: 17px;
+    }
+
+    .th-btn:hover:after {
+        background-color: $theme-color;
+    }
+}
+
+.consultation-area {
+    margin-left: 100px;
+
+    @include ml {
+        margin-left: 0;
+    }
+}
+
+.consultation-form {
+
+    select,
+    .form-control,
+    .form-select,
+    textarea,
+    input {
+        background-color: transparent;
+        border: 1px solid $white-color;
+        border-radius: 30px;
+        color: $white-color;
+
+        @include inputPlaceholder {
+            color: $white-color;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    .th-btn {
+        padding: 17.5px 20px;
+    }
+}
+
+.contact-image {
+    &.style2 {
+        text-align: right;
+
+        @include md {
+            margin-top: 60px;
+            text-align: center;
+        }
+    }
+}
+
+.contact-info {
+    &-area {
+        @include lg {
+            padding: 120px 0 80px 0;
+        }
+    }
+
+    &_wrapp {
+        display: flex;
+        gap: 72px;
+        max-width: 663px;
+
+        @include sm {
+            gap: 20px;
+        }
+
+        @media(max-width: 480px) {
+            flex-direction: column;
+        }
+
+        .divided {
+            width: 1px;
+            height: 80px;
+            background-color: #DEDFE3;
+
+            @include sm {
+                display: none;
+            }
+        }
+    }
+
+
+    @include vxs {
+        flex-direction: column;
+    }
+
+    .media-body {
+        @include vxs {
+            text-align: center;
+        }
+
+    }
+
+
+
+    &_icon {
+        display: inline-block;
+        width: 80px;
+        min-width: 80px;
+        height: 80px;
+        line-height: 70px;
+        border-radius: 24px;
+        background-color: var(--theme-color);
+        color: var(--white-color);
+        text-align: center;
+        font-size: 35px;
+        position: relative;
+
+        @include vxs {
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+
+    }
+
+    &_label {
+        font-family: $title-font;
+        font-size: 24px;
+        line-height: 30px;
+        color: $title-color;
+        font-weight: 600;
+        margin-top: -0.3rem;
+        margin-bottom: 2px;
+
+        @include xl {
+            font-size: 20px;
+        }
+    }
+
+    &_link {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: 0.02em;
+        text-decoration-line: underline;
+        color: $theme-color;
+        display: block;
+        transition: all 0.4s ease-in-out;
+        margin-bottom: 15px;
+
+        &:hover {
+            color: $theme-color;
+        }
+
+        span {
+            display: block;
+        }
+    }
+
+    &_text {
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 0.02em;
+        max-width: 260px;
+    }
+
+    .media-body {
+        margin-bottom: -0.5rem;
+
+    }
+}
+
+.contact-media {
+    background-color: #FFF2F2;
+    border-radius: 16px;
+    padding: 67px 40px;
+    display: flex;
+    gap: 24px;
+
+    @include ml {
+        padding: 40px 25px;
+    }
+
+    @include vxs {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    &:nth-child(2) {
+        background-color: #EBF5DE;
+
+        &:hover {
+            .icon-btn {
+                background-color: #57B33E;
+            }
+        }
+
+    }
+
+    &:nth-child(3) {
+        background-color: #F2F3FC;
+
+        &:hover {
+            .icon-btn {
+                background-color: #8487FF;
+            }
+        }
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 32px;
+    }
+
+    @include xl {
+        padding: 24px;
+    }
+
+    @include vxs {
+        padding: 16px;
+        gap: 15px;
+    }
+
+    .icon-btn {
+        --btn-size: 80px;
+        font-size: 25px;
+        background-color: #fff;
+        border: none;
+        border-radius: 50%;
+        color: $title-color;
+
+        @include vxs {
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .box-text,
+    a {
+        color: $title-color;
+        max-width: 285px;
+        margin-bottom: 0;
+
+        @include vxs {
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        a {
+            color: inherit;
+            display: block;
+            max-width: fit-content;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+
+    .box-title {
+        letter-spacing: 0.02em;
+        margin-bottom: 7px;
+
+        @include xl {
+            font-size: 20px;
+        }
+    }
+
+    &:hover {
+        .icon-btn {
+            background-color: $theme-color;
+            color: $white-color;
+        }
+    }
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    @include vxs {
+        flex-direction: column;
+    }
+
+    &:not(:last-child) {
+        border-bottom: 1px solid #ECECEC;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .media-body {
+        @include vxs {
+            text-align: center;
+        }
+
+    }
+
+    &-wrap {
+        border-radius: 30px;
+        border: 1px solid $smoke-color;
+        background-color: var(--white-color);
+        padding: 60px;
+
+        @include xl {
+            padding: 40px;
+        }
+
+        @include lg {
+            padding: 30px;
+        }
+
+        @include vxs {
+            text-align: center;
+        }
+
+        .sec-title {
+            margin-bottom: 10px;
+        }
+    }
+
+
+    &_icon {
+        display: inline-block;
+        --icon-size: 70px;
+        min-width: 70px;
+        line-height: 70px;
+        background-color: rgba(62, 102, 243, 0.10);
+        color: var(--theme-color);
+        text-align: center;
+        font-size: 25px;
+        border-radius: 99px;
+        position: relative;
+        transition: all 0.4s ease-in-out;
+    }
+
+    &_title {
+        font-family: $body-color;
+        font-size: 16px;
+        color: $body-color;
+        font-weight: 400;
+        margin-bottom: 4px;
+    }
+
+    &_text {
+        font-size: 18px;
+        font-weight: 600;
+        color: $title-color;
+        letter-spacing: -0.36px;
+        margin-bottom: 0;
+        display: block;
+        transition: all 0.4s ease-in-out;
+
+        a {
+            color: inherit;
+        }
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+
+    &:hover {
+        .contact-item {
+            &_icon {
+                background-color: $theme-color;
+
+
+                img {
+                    filter: brightness(0) invert(1);
+                }
+            }
+        }
+    }
+}
+
+.contact-area2 {
+    background: #FFF2F2;
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: 120px;
+
+    @include xs {
+        padding: 32px 20px;
+    }
+
+    .contact-image {
+        border-radius: 16px;
+
+        img {
+            width: 100%;
+            border-radius: 16px;
+        }
+    }
+
+}
+
+.contact-content {
+    @include xxl {
+        padding: 72px 0;
+    }
+}
+
+.contact-content {
+    @include lg {
+        padding: 30px 0 72px 0;
+    }
+}
+
+.contact-content {
+    @include md {
+        padding: 30px 0 60px 0;
+    }
+}
+
+.rounded-20 {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.form-text {
+    font-size: 16px;
+}
+
+.contact-map {
+    position: relative;
+    line-height: 0px;
+
+    @include md {
+        margin-bottom: 40px;
+    }
+
+    .contact-icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+
+        i {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 24px;
+            color: $white-color;
+            background-color: $theme-color;
+            border-radius: 50%;
+
+            @include md {
+                width: 80px;
+                height: 80px;
+                line-height: 80px;
+            }
+
+        }
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        z-index: 3;
+
+        img {
+            animation: jumpAni 2s ease-in-out infinite alternate;
+        }
+
+
+        // &:after {
+        //     content: "";
+        //     width: 100%;
+        //     height: 100%;
+        //     left: 0;
+        //     bottom: 0;
+        //     position: absolute;
+        //     border-radius: 50% 50% 0;
+        //     border: 16px solid $title-color;
+        //     transform: rotate(45deg) translate(0, 0);
+
+        //     animation: location-anim 0.4s ease-in-out infinite alternate;
+
+        // }
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0px;
+            right: 0;
+            margin: auto;
+            top: 90%;
+            width: 38px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(13, 13, 12, 0.2);
+            z-index: -1;
+
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: -40px;
+            right: 0;
+            margin: auto;
+            top: 50%;
+            width: 130px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid $white-color;
+            z-index: -1;
+
+        }
+
+        @keyframes location-anim {
+            0% {
+                transform: rotate(5deg) translate(5px, 5px);
+            }
+
+            100% {
+                transform: rotate(5deg) translate(-5px, -5px);
+            }
+        }
+
+        @keyframes location-anim2 {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0.5);
+            }
+        }
+    }
+
+
+
+    iframe {
+        width: 100%;
+        height: 681px;
+    }
+
+    &.style2 {
+        min-width: 972px;
+
+        @media(min-width: 1930px) {
+            min-width: 100%;
+        }
+
+        @include ml {
+            min-width: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 681px;
+            border-radius: 0;
+
+            @include sm {
+                height: 500px;
+            }
+
+        }
+    }
+
+    &.style3 {
+        @include md {
+            margin-bottom: 0;
+        }
+        iframe {
+            height: 948px;
+
+            @include ml {
+                height: 600px;
+            }
+        }
+    }
+}
+
+.contact-wrapp {
+    display: flex;
+    justify-content: center;
+}
+
+.discount-wrapp {
+    &.style3 {
+        .play-btn>i {
+            background-color: $theme-color;
+            color: $title-color;
+
+            &:hover {
+                color: $title-color;
+            }
+        }
+    }
+}
+
+.appoinment-area2 {
+    border-radius: 30px;
+}
+
+.contact-image2 {
+    border-radius: 0px 30px 30px 0px;
+    text-align: right;
+    height: 100%;
+    margin-left: 95px;
+
+    @include ml {
+        margin-left: 40px;
+    }
+
+    @include lg {
+        border-radius: 0px 30px 30px 30px;
+        margin: 0;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0px 0px 30px 0px;
+
+        @include lg {
+            border-radius: 0px 0px 30px 30px;
+        }
+    }
+}
+
+.appointment-content2 {
+    padding: 120px 0 120px 120px;
+
+    @include ml {
+        padding: 120px 0 120px 60px;
+    }
+
+    @include lg {
+        padding: 80px 40px 80px 40px;
+    }
+
+    @include vxs {
+        padding: 80px 20px 80px 20px;
+    }
+}
+
+.contact-area {
+    background-color: #F2F3FC;
+}

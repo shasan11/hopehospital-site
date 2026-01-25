@@ -1,0 +1,80 @@
+{% load static %}
+
+<div class="choose-area2 position-relative overflow-hidden bg-light px-5">
+  <div class="row gy-4 align-items-end">
+    <div class="col-xl-5">
+      <div class="space">
+        <div class="title-area pe-xl-5 text-xl-start text-center">
+          <span class="sub-title sub-title2 text-anime-style-2 text-dark">why choose us</span>
+          <h2 class="sec-title text-anime-style-3"><span class="fw-normal">Three good </span> Reasons</h2>
+        </div>
+
+        <div class="choose-about hover-item wow fadeInUp" data-wow-delay=".2s">
+          <div class="choose-about_number">1</div>
+          <div class="media-body">
+            <h3 class="box-title">Patient Safety</h3>
+            <p class="choose-about_text">Our expert paediatric cardiac team have helped thousands of children and infants.</p>
+          </div>
+        </div>
+
+        <div class="choose-about hover-item wow fadeInUp item-active" data-wow-delay=".4s">
+          <div class="choose-about_number">2</div>
+          <div class="media-body">
+            <h3 class="box-title">Innovative Treatments</h3>
+            <p class="choose-about_text">We offer cutting-edge technologies and therapies tailored to each person's unique needs.</p>
+          </div>
+        </div>
+
+        <div class="choose-about hover-item wow fadeInUp" data-wow-delay=".6s">
+          <div class="choose-about_number">3</div>
+          <div class="media-body">
+            <h3 class="box-title">Family Support</h3>
+            <p class="choose-about_text">Our dedicated team provides comprehensive support for families throughout the treatment journey.</p>
+          </div>
+        </div>
+
+        <div class="btn-group justify-content-center justify-content-xl-start mt-60 wow fadeInUp">
+          <a href="{% url 'contact' %}" class="th-btn style2">
+            Contact Us <i class="fa-light fa-arrow-right-long ms-2"></i>
+          </a>
+
+          <div class="call-info style2 d-flex">
+            <div class="call-icon">
+              {% if site_settings.phone1 %}
+                <a href="tel:{{ site_settings.phone1 }}"><i class="fa-solid fa-phone-volume"></i></a>
+              {% else %}
+                <a href="tel:+00123456789"><i class="fa-solid fa-phone-volume"></i></a>
+              {% endif %}
+            </div>
+            <div class="media-body">
+              <span class="call-label">24/7 EMERGENCY</span>
+              <p class="call-link">
+                {% if site_settings.phone1 %}
+                  <a href="tel:{{ site_settings.phone1 }}">{{ site_settings.phone1 }}</a>
+                {% else %}
+                  <a href="tel:+0012345678900">+00 (123) 456789 00</a>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-xl-7">
+      <div class="choose-img2">
+        <div class="img1">
+          <img src="{% static 'assets/img/hope-image-6.jpg' %}" alt="Why choose us">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="choose-shape">
+  <img src="{% static 'assets/img/shape/ellipse-1.png' %}" alt="">
+</div>
+<div class="choose-shape2">
+  <img src="{% static 'assets/img/shape/ellipse-2.png' %}" alt="">
+</div>

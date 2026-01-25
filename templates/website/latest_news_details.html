@@ -1,0 +1,76 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Breadcrumb -->
+<div class="breadcumb-wrapper">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ news.title }}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'latest_news' %}">Latest News</a></li>
+                <li>{{ news.title }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- News Details -->
+<section class="th-news-wrapper news-details space-top space-extra-bottom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-8 col-lg-10">
+                <div class="th-news news-single">
+
+                    <!-- News Image -->
+                    {% if news.image %}
+                        <div class="news-img global-img mb-4">
+                            <img src="{{ news.image.url }}" alt="{{ news.title }}">
+                        </div>
+                    {% endif %}
+
+                    <!-- News Meta -->
+                    <div class="news-content">
+                        <div class="news-meta mb-3">
+                            {% if news.published_at %}
+                            <span><i class="fa-solid fa-calendar-days"></i>
+                                {{ news.published_at|date:"M d, Y" }}
+                            </span>
+                            {% endif %}
+                            {% if news.author %}
+                            <span><i class="fa-solid fa-user"></i>
+                                {{ news.author.get_full_name|default:"Editorial" }}
+                            </span>
+                            {% endif %}
+                            {% if news.is_breaking %}
+                            <span class="badge bg-danger">Breaking News</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- News Title -->
+                        <h2 class="news-title mb-3">{{ news.title }}</h2>
+
+                        <!-- News Content -->
+                        <div class="news-desc text-body">
+                            {{ news.content|safe }}
+                        </div>
+
+                        <!-- Source -->
+                        {% if news.source_url %}
+                        <div class="mt-4">
+                            <strong>Source:</strong>
+                            <a href="{{ news.source_url }}" target="_blank" rel="noopener noreferrer">
+                                {{ news.source_url }}
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

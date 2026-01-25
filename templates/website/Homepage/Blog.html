@@ -1,0 +1,42 @@
+{% load static %}
+
+<section class="overflow-hidden space" id="blog-sec">
+  <div class="container">
+    <div class="title-area text-center">
+      <span class="sub-title">News & Blog</span>
+      <h2 class="sec-title"><span class="fw-normal">{{ site_settings.org_name }}</span> Latest Articles</h2>
+    </div>
+
+    <div class="slider-area">
+      <div class="swiper th-slider has-shadow" id="blogSlider2" data-slider-options='{"loop":true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":1},"768":{"slidesPerView":1},"992":{"slidesPerView":2},"1200":{"slidesPerView":3}}}'>
+        <div class="swiper-wrapper">
+          {% for post in latest_blog_posts %}
+          <div class="swiper-slide">
+            <div class="blog-card style2">
+              <div class="box-img global-img">
+                {% if post.cover_image %}
+                  <img src="{{ post.cover_image.url }}" alt="{{ post.title }}">
+                {% else %}
+                  <img src="{% static 'assets/img/blog/blog_1_1.jpg' %}" alt="{{ post.title }}">
+                {% endif %}
+              </div>
+              <div class="box-content">
+                <div class="blog-meta">
+                  <a href="{% url 'blogs' %}"><i class="fa-solid fa-user"></i>{{ post.author.get_full_name|default:"Editorial" }}{% if post.published_at %} · {{ post.published_at|date:"Y" }}{% endif %}</a>
+                  <a href="{% url 'blogs' %}"><i class="fa-solid fa-messages"></i>{% if post.category %}{{ post.category.name }}{% else %}Blog{% endif %}</a>
+                </div>
+                <h3 class="box-title"><a href="{% url 'blogs_details'   post.slug %}">{{ post.title }}</a></h3>
+                <p>{{ post.excerpt|default:"" }}</p>
+                <a href="{% url 'blogs_details'   post.slug %}" class="line-btn">Read More <i class="fa-regular fa-arrow-right ms-2"></i></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button data-slider-prev="#blogSlider2" class="slider-arrow style3 slider-prev"><i class="far fa-arrow-left"></i></button>
+      <button data-slider-next="#blogSlider2" class="slider-arrow style3 slider-next"><i class="far fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>

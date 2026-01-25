@@ -1,0 +1,49 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Breadcrumb -->
+<div class="breadcumb-wrapper" data-bg-src="{% static 'assets/img/bg/breadcumb-bg.jpg' %}">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ gallery.name }}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li>{{ gallery.name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Gallery Details -->
+<section class="th-gallery-details space-top space-extra-bottom">
+    <div class="container">
+        {% if gallery.description %}
+        <div class="mb-4 text-center">
+            {{ gallery.description|safe }}
+        </div>
+        {% endif %}
+
+        <div class="row g-4">
+            {% for pic in gallery.pictures.all %}
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-pic-card">
+                    <a href="{{ pic.image.url }}" target="_blank">
+                        <img src="{{ pic.image.url }}" alt="{{ pic.alt_text|default:pic.title }}" class="img-fluid rounded shadow">
+                    </a>
+                    {% if pic.caption %}
+                        <p class="mt-2 text-center small text-muted">{{ pic.caption }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No pictures available in this gallery.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="breadcumb-wrapper">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Health Packages</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li>Health Packages</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="overflow-hidden space">
+    <div class="container">
+        <div class="row gy-4 justify-content-center">
+
+            {% for item in packages %}
+            <div class="col-lg-6 col-xxl-3">
+                <div class="price-card th-ani wow fadeInUp" data-wow-delay=".2s">
+                    {% if item.image %}
+                    <div class="mb-3">
+                        <a href="{% url 'packages_details' item.slug %}">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-fluid rounded shadow">
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    <div class="box-content">
+                        <span class="offer-tag">{% if item.priority == 0 %}Popular{% endif %}</span>
+                        <h3 class="box-title">{{ item.name }}</h3>
+                        <h4 class="box-price">
+                           Rs. {{ item.price }}<span class="duration"></span>
+                        </h4>
+                        <p class="box-text">
+                            {% if item.description %}{{ item.description|striptags|truncatewords:20 }}{% endif %}
+                        </p>
+                    </div>
+
+                    <div class="available-list">
+                         
+                        <a href="{% url 'packages_details' item.slug %}" class="th-btn black-border fw-btn">
+                            View Details <i class="fa-regular fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No health packages available.</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

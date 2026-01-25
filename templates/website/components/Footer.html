@@ -1,0 +1,189 @@
+{% load static %}
+<footer class="footer-wrapper footer-layout2">
+  <!-- Top CTA -->
+   
+
+  <!-- Widgets -->
+  <div class="widget-area px-5">
+    <div class="container">
+      <div class="row justify-content-between">
+        <!-- About -->
+        <div class="col-md-6 col-xxl-3 col-xl-4">
+          <div class="widget footer-widget">
+            <div class="th-widget-about">
+              <div class="about-logo">
+                 
+              </div>
+              <p class="about-text">
+                {{ site_settings.seo_description|default:"Hope Hospital is a multidisciplinary healthcare center committed to safe, evidence-based medicine and a patient-first approach. Our team of specialists delivers comprehensive care—from emergency and critical care to maternity, pediatrics, cardiology, orthopedics, and advanced diagnostics—supported by modern infrastructure and compassionate service." }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-6 col-xl-auto">
+          <div class="widget widget_nav_menu footer-widget">
+            <h3 class="widget_title">Quick Links</h3>
+            <div class="menu-all-pages-container">
+              <ul class="menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about_intro' %}">About Us</a></li>
+                <li><a href="{% url 'department' %}">Departments</a></li>
+                <li><a href="{% url 'doctors' %}">Our Staff</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Utility -->
+        <div class="col-md-6 col-xl-auto">
+          <div class="widget widget_nav_menu footer-widget">
+            <h3 class="widget_title">Utility</h3>
+            <div class="menu-all-pages-container">
+              <ul class="menu">
+                <li><a href="{% url 'careers' %}">Careers</a></li>
+                <li><a href="{% url 'appointment' %}">Appointment</a></li>
+                <li><a href="{% url 'latest_news' %}">Latest News</a></li>
+                <li><a href="{% url 'blogs' %}">Blog</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our Services (dynamic) -->
+        <div class="col-md-6 col-xl-auto">
+          <div class="widget widget_nav_menu footer-widget">
+            <h3 class="widget_title">Our Services</h3>
+            <div class="menu-all-pages-container">
+              <ul class="menu">
+                {% for s in nav_services|slice:":6" %}
+                  <li><a href="{% url 'services_details' s.slug %}">{{ s.name }}</a></li>
+
+                {% empty %}
+                  <li><a href="{% url 'services' %}">All Services</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact + Tags -->
+    <div class="container">
+      <div class="row">
+        <!-- Contact Info -->
+        <div class="col-xl-4">
+          <div class="footer-widget-about">
+            <h3 class="box-title text-white">Find Us Here</h3>
+            <div class="th-widget-about">
+              <p class="footer-info">
+                <i class="fa-sharp fa-solid fa-phone"></i>
+                <span>
+                  {% if site_settings.phone1 %}<a class="text-inherit" href="tel:{{ site_settings.phone1 }}">{{ site_settings.phone1 }}</a>{% endif %}
+                  {% if site_settings.phone2 %} / <a class="text-inherit" href="tel:{{ site_settings.phone2 }}">{{ site_settings.phone2 }}</a>{% endif %}
+                </span>
+              </p>
+              <p class="footer-info">
+                <i class="fa-sharp fa-solid fa-envelope"></i>
+                <span>
+                  <a class="text-inherit" href="mailto:{{ site_settings.email|default:'info@example.com' }}">
+                    {{ site_settings.email1|default:"info@example.com" }}
+                  </a>
+                </span>
+              </p>
+              <p class="footer-info">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ site_settings.address|default:"Address not set"|safe }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags/Service Cloud + CTA -->
+        <div class="col-xl-8">
+          <div class="footer-tags">
+            <div class="h4 text-white">Services Needed?</div>
+            <div class="tagcloud">
+              {% for s in nav_services|slice:":10" %}
+              <a href="{% url 'services_details' s.slug %}">{{ s.name }}</a> 
+
+              {% empty %}
+                <a href="{% url 'services' %}">Explore Services</a>
+              {% endfor %}
+            </div>
+            <div class="btn-group">
+              <a href="{% url 'appointment' %}" class="th-btn style1">
+                Make Appointment <i class="fa-light fa-arrow-right-long ms-2"></i>
+              </a>
+              <div class="opening-hour">
+                <div class="icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="media-body">
+                  <span class="label">Opening Hours</span>
+                  <span class="time">{{ site_settings.opening_hours|default:"09:30 AM - 10:30 PM" }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="container px-5">
+    <div class="row gy-2 justify-content-center justify-content-md-between align-items-center">
+      <div class="col-md-7 col-lg-5 text-center text-md-start">
+        <div class="social-links">
+          <span class="title">Social Media:</span>
+          {% if site_settings.fb_link %}<a href="{{ site_settings.fb_link }}"><i class="fab fa-facebook-f"></i></a>{% endif %}
+          {% if site_settings.linkedin_link %}<a href="{{ site_settings.linkedin_link }}"><i class="fab fa-linkedin-in"></i></a>{% endif %}
+          {% if site_settings.insta_link %}<a href="{{ site_settings.insta_link }}"><i class="fab fa-instagram"></i></a>{% endif %}
+          {% if site_settings.youtube_link %}<a href="{{ site_settings.youtube_link }}"><i class="fab fa-youtube"></i></a>{% endif %}
+        </div>
+      </div>
+      <div class="col-md-5 col-lg-7">
+        <div class="call-info">
+          <div class="call-info_icon">
+            <a href="tel:{{ site_settings.phone1|default:'000' }}">
+              <img src="{% static 'assets/img/icon/call.svg' %}" alt="Call" />
+            </a>
+          </div>
+          <div class="media-body">
+            <span class="call-info_label">DAILY 24H EMERGENCY</span>
+            <p class="call-info_link">
+              <a href="tel:{{ site_settings.phone1|default:'000' }}">{{ site_settings.phone1|default:"000" }}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="copyright-wrap px-5">
+    <div class="container">
+      <div class="row gy-2 align-items-center">
+        <div class="col-lg-5">
+          <p class="copyright-text">
+            Copyright <i class="fal fa-copyright"></i> {{ now|date:"Y" }}
+            <a href="{% url 'home' %}">{{ site_settings.org_name|default:"Hope Hospital" }}</a>.
+            All Rights Reserved.
+          </p>
+        </div>
+        <div class="col-lg-7 text-center text-lg-end">
+          <div class="footer-links">
+            <ul>
+               
+              <li><a href="https://www.cortifox.com">Designed & Develped by Cortifox</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,49 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+<!-- Breadcumb Section -->
+<div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcumb-bg.jpg">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">All Departments</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li>Departments</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Departments Section -->
+<section class="departments-section pt-100 pb-100 mt-5 mb-5">
+    <div class="container">
+        <div class="row g-4">
+            {% for department in nav_departments %}
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card style2">
+                    <div class="box-content text-center">
+                        {% if department.icon %}
+                        <div class="box-icon mb-3">
+                            <img src="{{ department.icon.url }}" alt="{{ department.name }} Icon">
+                        </div>
+                        {% endif %}
+                        <h3 class="box-title">
+                            <a href="{% url 'department_details' department.slug %}">{{ department.name }}</a>
+                        </h3>
+                        {% if department.description %}
+                        <p class="box-text">{{ department.description|truncatewords:20 }}</p>
+                        {% endif %}
+                        <a href="{% url 'department_details' department.slug %}" class="th-btn black-border">
+                            Read More <i class="fa-light fa-arrow-right-long ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Optional Pagination -->
+         
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+<div class="breadcumb-wrapper">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Services</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li>{{ service.name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<section class="space overflow-hidden">
+    <div class="container">
+         
+        <div class="page-single row">
+            <div class="page-img mb-35 col-lg-6">
+                {% if service.pic %}
+                    <img src="{{ service.pic.url }}" alt="{{ service.name }}" class="w-100">
+                {% endif %}
+            </div>
+            <div class="col-lg-6">
+                <div class="title-area">
+                    <h3 class="h2">{{ service.name }}</h3>
+                </div>
+                <p class="fs-18 mb-40">{{ service.desc|safe }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+{% endblock content %}
+    

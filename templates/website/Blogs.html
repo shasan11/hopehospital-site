@@ -1,0 +1,83 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcumb-bg.jpg">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Blogs</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li>Blogs</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="th-blog-wrapper space-top space-extra-bottom">
+  <div class="container">
+    <div class="row">
+      {% for post in latest_blog_posts %}
+      <div class="col-lg-6 col-xl-4 mb-4 border  border-black p-8">
+        <div class="th-blog blog-single has-post-thumbnail single-grid">
+          
+          <!-- Blog Image -->
+          <div class="blog-img global-img">
+            <a href="{% url 'blogs_details' post.slug %}">
+              {% if post.cover_image %}
+                <img src="{{ post.cover_image.url }}" alt="{{ post.title|default:'Blog Post' }}">
+              {% else %}
+                <img src="{% static 'assets/img/blog/blog-grid-1.jpg' %}" alt="{{ post.title|default:'Blog Post' }}">
+              {% endif %}
+            </a>
+          </div>
+
+          <!-- Blog Content -->
+          <div class="blog-content">
+            <div class="blog-meta">
+              <a class="author" href="#">
+                <i class="fa-solid fa-user"></i>
+                {{ post.author.get_full_name|default:"Editorial" }}
+              </a>
+              {% if post.published_at %}
+              <a href="#">
+                <i class="fa-solid fa-calendar-days"></i>
+                {{ post.published_at|date:"M d, Y" }}
+              </a>
+              {% endif %}
+              {% if post.category %}
+              <a href="#">
+                <i class="fa-solid fa-tag"></i>
+                {{ post.category.name }}
+              </a>
+              {% endif %}
+            </div>
+
+            <h2 class="box-title mt-2">
+              <a href="{% url 'blogs_details' post.slug %}">
+                {{ post.title }}
+              </a>
+            </h2>
+
+            {% if post.excerpt %}
+              <p>{{ post.excerpt|safe }}</p>
+            {% else %}
+              <p>{{ post.content|striptags|truncatewords:25 }}</p>
+            {% endif %}
+
+            <a href="{% url 'blogs_details' post.slug %}" class="line-btn">
+              Read More <i class="fa-light fa-arrow-right-long ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p class="text-center text-muted">No articles available.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

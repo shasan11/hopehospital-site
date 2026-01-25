@@ -1,0 +1,856 @@
+/* appointment-area start -----------------------*/
+.appointment-area {
+    position: relative;
+    padding: 0 120px;
+    border-radius: 40px;
+    z-index: 2;
+
+    @include ml {
+        padding: 0 80px;
+    }
+
+    @include xl {
+        padding: 0 40px;
+    }
+
+    @include sm {
+        padding: 0 20px;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        height: 517px;
+        background-image: url("../img/bg/appointment_bg_1.jpg");
+        border-radius: inherit;
+        z-index: -1;
+    }
+}
+
+.video-area {
+    position: relative;
+    z-index: 2;
+    background-attachment: fixed;
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(25, 35, 97, 0.5), rgba(25, 35, 97, 0.5));
+        z-index: -1;
+    }
+}
+
+.video-area3 {
+    position: relative;
+    z-index: 2;
+    background-attachment: fixed;
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(26, 33, 89, 0.5), rgba(26, 33, 89, 0.5));
+        z-index: -1;
+    }
+}
+
+/* video-box1 start ------------------*/
+.video-box1 {
+    @include lg {
+        margin: 80px 0 50px 0;
+    }
+
+    .play-btn {
+
+        &:before,
+        &:after {
+            display: none;
+        }
+
+        >i {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid $white-color;
+
+        }
+    }
+}
+
+.video-box2 {
+    position: relative;
+    z-index: 2;
+    border-radius: 16px;
+    height: 100%;
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(25, 35, 97, 0.5), rgba(25, 35, 97, 0.5));
+        border-radius: inherit;
+
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    .video-play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 3;
+        width: 64px;
+        height: 64px;
+        line-height: 64px;
+        font-size: 24px;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.video-play-btn {
+    position: relative;
+    border: 0;
+    width: 118px;
+    height: 118px;
+    line-height: 118px;
+    transition: all 1s cubic-bezier(0, 0, 0.2, 1);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 auto;
+    display: inline-block;
+    font-size: 40px;
+    text-align: center;
+    color: $white-color;
+
+    @include sm {
+        width: 50px;
+        height: 50px;
+        line-height: 52px;
+        font-size: 20px;
+    }
+
+    i {
+        color: $white-color;
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        bottom: 0;
+        left: 0;
+        transition: 0.3;
+        border-radius: 50%;
+        border: 1px solid $white-color;
+        animation: ripple 2s linear infinite;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        bottom: 0;
+        left: 0;
+        transition: 0.3;
+        border-radius: 50%;
+        border: 1px solid $white-color;
+        animation: ripple 2s linear 1s infinite;
+    }
+
+    &:hover {
+        background-color: $theme-color;
+    }
+}
+
+.video-wrapper {
+    position: absolute;
+    top: 120px;
+    right: 120px;
+
+    @include lg {
+        position: relative;
+        top: 90px;
+        margin-bottom: 90px; 
+        right: unset;
+    }
+
+    .discount-wrapp {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        @include lg {
+            display: block;
+            margin: auto;
+        }
+
+    }
+
+    .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        font-size: 20px;
+        margin-bottom: 0;
+        background-color: $white-color;
+        color: $theme-color;
+        z-index: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:before,
+        &:after {
+            background-color: #fff;
+        }
+
+        >i {
+            background-color: $white-color;
+            color: $theme-color;
+        }
+    }
+
+    .discount-tag {
+        color: $white-color;
+
+        span {
+            --rotate-letter: 10deg;
+        }
+    }
+}
+
+
+/* stomatology area --------------------*/
+.stomatology-box {
+    margin-left: auto;
+    margin-right: auto;
+    aspect-ratio: 1.43 / 1;
+    margin-left: 82px;
+
+    @include ml {
+        margin-left: 0;
+    }
+}
+
+.stomatology-slide-image {
+    position: relative;
+    // width: 837px;
+    height: 100%;
+    margin: auto;
+    //height: 585px;
+    border-radius: 16px;
+    border: none;
+    background-color: transparent;
+    overflow: hidden;
+
+    &:before,
+    &:after {
+        position: absolute;
+        top: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid $white-color;
+        backdrop-filter: blur(5px);
+        border-radius: 8px;
+        padding: 3px 30px;
+        font-family: var(--body-font);
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 0.02em;
+        color: var(--white-color);
+        text-transform: capitalize;
+        z-index: 2;
+
+        @include vxs {
+            display: none;
+        }
+    }
+
+    &:before {
+        content: "Before";
+        left: 30px;
+    }
+
+    &:after {
+        content: "After";
+        right: 30px;
+    }
+
+    .img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left center;
+
+    }
+
+    .foreground-img {
+        width: 50%;
+
+    }
+
+    .slider {
+        position: absolute;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        outline: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        transition: all .2s;
+        text-align: center;
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 1px;
+            height: 600px;
+            background: $white-color;
+            cursor: pointer;
+        }
+
+        &::-moz-range-thumb {
+            width: 1px;
+            height: 600px;
+            background: $white-color;
+            cursor: pointer;
+        }
+    }
+
+    .slider-button {
+        $size: 46px;
+        pointer-events: none;
+        position: absolute;
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        padding: 8px;
+        background-color: $title-color;
+        left: calc(50% - 24px);
+        top: calc(50% - 24px);
+        text-align: center;
+
+        @mixin arrow-helper() {
+            content: '';
+            padding: 3px;
+            display: inline-block;
+            border: solid $white-color;
+            border-width: 0 1px 1px 0;
+        }
+
+        &:after {
+            @include arrow-helper();
+            transform: rotate(-45deg);
+        }
+
+        &:before {
+            @include arrow-helper();
+            transform: rotate(135deg);
+        }
+    }
+}
+
+.pediatric-card {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #DEDFE3;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    gap: 32px;
+    transition: all 0.4s ease-in-out;
+    z-index: 2;
+
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #FFF2F2;
+        z-index: -1;
+        border-radius: inherit;
+        transition: all 0.4s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    @include ml {
+        gap: 25px;
+    }
+
+    @include sm {
+        flex-direction: column;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+
+    .box-img {
+        position: relative;
+        min-width: 273px;
+        border-radius: 8px;
+        z-index: 2;
+
+        img {
+            border-radius: 8px;
+        }
+
+        .badge {
+            top: 16px;
+            left: 16px;
+            right: unset;
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            border-radius: 50%;
+            padding: 0;
+            background-color: $white-color;
+            z-index: 3;
+
+            img {
+                width: 20px;
+                height: 20px;
+                object-fit: none;
+            }
+
+        }
+    }
+
+    .box-content {
+        width: 100%;
+    }
+
+    .meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 55px;
+    }
+
+    .tag {
+        padding: 4px 24px;
+        background-color: $theme-color;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.02em;
+        color: $white-color;
+    }
+
+    .rating {
+        letter-spacing: 0.02em;
+        color: #1C2359;
+
+        i {
+            color: #FFA439;
+            margin-right: 5px;
+        }
+    }
+
+    .box-title {
+        margin-bottom: 5px;
+    }
+
+    .box-text {
+        margin-bottom: 40px;
+
+        i {
+            color: #101111;
+            margin-right: 8px;
+        }
+    }
+
+    .th-btn {
+        padding: 15px 24px;
+        font-size: 18px;
+        font-weight: 500;
+
+        @include ml {
+            font-size: 16px;
+            padding: 15px 18px;
+        }
+    }
+
+    .doctor {
+        letter-spacing: 0.02em;
+        color: #1C2359;
+
+        i {
+            color: $title-color;
+            margin-right: 6px;
+        }
+    }
+
+    .th-btn {
+        transition: all 0.4s ease-in-out;
+    }
+
+
+    &:hover {
+        border-color: #FFF2F2;
+
+        &:before {
+            height: 100%;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .th-btn {
+            background-color: $title-color;
+            color: $white-color;
+
+            &:before,
+            &:after {
+                background-color: $title-color;
+            }
+        }
+    }
+}
+
+.shape-mockup2 {
+    position: absolute;
+}
+
+
+/* map-view area start ------------------*/
+.map-view {
+    z-index: 2;
+
+    .shape-mockup2 {
+        position: absolute;
+    }
+
+    &:hover {
+        .card-view {
+            transform: scaleX(1);
+        }
+    }
+}
+
+.card-view {
+    background-color: #FFF2F2;
+    box-shadow: 0px 4px 20px rgba(18, 27, 82, 0.1);
+    border-radius: 16px;
+    width: 382px;
+    position: absolute;
+    top: -22rem; 
+    left: -6rem;
+    display: inline-block;
+    z-index: 4;
+    transform: scaleX(0);
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    @include md {
+        top: -18rem;
+    }
+
+    @include sm {
+        width: 300px;
+    }
+
+
+    @include vxs {
+        left: -9rem;
+        top: -16rem;
+    }
+
+    .map {
+        padding: 8px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+
+        img {
+            border-radius: 8px;
+        }
+    }
+
+    .box-title {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .box-content {
+        padding: 16px;
+    }
+
+    .box-text {
+        margin-bottom: -0.3rem;
+    }
+
+}
+
+/* map-view area end ------------------*/
+
+.hospital-image {
+    border-radius: 16px;   
+
+    .main-container {
+        cursor: url(../img/icon/cursor.svg), auto;
+
+        .image-container {
+            height: 796px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+
+            &:after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: $theme-color;
+                opacity: 1;
+                transition: 0.4s;  
+                z-index: 1;
+            }
+
+            
+        }
+    }
+
+    @include sm {
+        padding: 40px;
+
+        .main-container {
+            .image-container {
+                height: 500px;
+            }
+        }
+    }
+
+    @include xs {
+        padding: 30px;
+
+        .main-container {
+            .image-container {
+                height: 400px;
+            }
+        }
+    }
+
+    @include vxs {
+        padding: 20px;
+    }
+}
+
+.doctor-table { 
+    border: none;
+    max-width: 647px;
+    margin-bottom: 45px; 
+
+    th,
+    td {
+        border: none;
+        border-bottom: 1px solid #DEDFE3;
+        padding: 20px 70px 20px 0px; 
+        @include ml {
+            padding: 20px 30px 20px 0px; 
+        }
+        @include xs {
+            padding: 20px 10px 20px 0px; 
+        }
+    }
+}
+
+.doctor-time {
+    max-width: 647px;
+    margin-bottom: 60px;
+
+    .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid #DEDFE3;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+
+        @include xs {
+            flex-direction: column;
+        }
+    }
+
+    .days {
+        font-weight: 400;
+        font-size: 18px;
+        letter-spacing: 0.02em;
+        color: $title-color;
+
+    }
+
+    .times {
+        font-weight: 500;
+        font-size: 18px;
+        letter-spacing: 0.02em;
+        color: $theme-color;
+
+    }
+
+    .name {
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+        color: $title-color;
+
+    }
+}
+
+.doctor-content {
+    .title {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: 0.02em;
+        color: $theme-color;
+    }
+
+    .text {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 0.02em;
+        color: $body-color;
+        max-width: 594px;
+        margin-bottom: 50px;
+
+    }
+}
+
+.hospital-slider1 {
+    .panorama-img {
+        display: none !important;
+    }
+
+    .hospital-panorama-slide {
+        position: relative;
+        z-index: 7;
+
+        .discount {
+            position: absolute;
+            top: 24px;
+            right: 0;
+            background-color: $theme-color;
+            padding: 7px 13px 7px 28px;
+            mask-image: url("../img/shape/shape-1.png");
+            mask-repeat: no-repeat;
+            mask-size: 100% 100%;
+            color: $white-color;
+            font-size: 18px;
+            font-weight: 500;
+            z-index: 9;
+        }
+
+        .hospital-panorama-slide {
+            position: relative;
+            z-index: 7;
+
+            &:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(0deg, rgba(24, 26, 30, 0.3), rgba(24, 26, 30, 0.3));
+                z-index: 1;
+            }
+        }
+    }
+
+    .hospital-panorama-slide {
+        position: relative;
+    }
+
+    .hospital-panorama-slide {
+        cursor: grab !important;
+    }
+
+    .hospital-panorama-slide:active {
+        cursor: grabbing !important;
+    }
+
+    .hospital-slider-img {
+        height: 175px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    }
+
+}
+
+.main-container {
+    position: relative;
+    cursor: url(../img/icon/cursor.svg), auto;
+    z-index: 2;
+    margin-right: 40px;
+
+    @include lg {
+        margin-right: 0;
+    }
+
+    .box-title {
+        position: absolute;
+        left: 72px;
+        bottom: 72px;
+        margin-bottom: 0;
+        font-weight: 600;
+        font-size: 24px;
+        letter-spacing: 0.02em;
+        color: #FFFFFF;
+
+        @include sm {
+            left: 20px;
+            bottom: 20px;
+        }
+
+
+    }
+
+    .image-container {
+        height: 796px;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+
+        @include sm {
+            height: 500px;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(26, 33, 89, 0) 0%, rgba(26, 33, 89, 0.3) 100%);
+            opacity: 1;
+            transition: 0.4s;
+        }
+
+        &:hover {
+            &:after {
+                opacity: 1;
+            }
+        }
+    }
+}

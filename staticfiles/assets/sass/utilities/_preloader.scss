@@ -1,0 +1,91 @@
+.preloader {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: $white-color;
+
+  .th-btn {
+    padding: 15px 20px;
+    border-radius: 0;
+    font-size: 14px;
+  }
+}
+
+.preloader-inner {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 1;
+
+  img {
+    display: block;
+    margin: 0 auto 0 auto;
+  }
+}
+
+/* Specific styles for .heart-rate container */
+.heart-rate {
+  width: 170px;
+  height: 73px;
+  position: relative;
+  margin: 20px auto;
+}
+
+/* Styles for the fade-in animation */
+.heart-rate .fade-in {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  top: 0;
+  right: 0;
+  animation: heartRateIn 2.5s linear infinite;
+}
+
+/* Styles for the fade-out animation */
+.heart-rate .fade-out {
+  position: absolute;
+  width: 120%;
+  /* Adjusted width to ensure animation space */
+  height: 100%;
+  background-color: #fff;
+  top: 0;
+  right: -120%;
+  animation: heartRateOut 2.5s linear infinite;
+}
+
+/* Keyframes for the heartRateIn animation */
+@keyframes heartRateIn {
+  0% {
+    width: 100%;
+  }
+
+  50% {
+    width: 0;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+/* Keyframes for the heartRateOut animation */
+@keyframes heartRateOut {
+  0% {
+    left: -120%;
+  }
+
+  30% {
+    left: -120%;
+  }
+
+  100% {
+    left: 0;
+  }
+}

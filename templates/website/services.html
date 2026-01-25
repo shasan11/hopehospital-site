@@ -1,0 +1,44 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+<div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">All Services</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li>All Services </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="position-relative overflow-hidden space overflow-hidden" id="service-sec">
+    <div class="container">
+        <div class="row gy-4">
+            {% for s in nav_services %}
+            <div class="col-md-6 col-lg-4 col-xxl-3">
+                <div class="service-card style2">
+                    <div class="box-content">
+                        <div class="box-icon">
+                            {% if s.icon %}
+                                <img src="{{ s.icon.url }}" alt="{{ s.name}}">
+                            {% else %}
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS78BiGht91wmZPACBn5TR5yLLCHAjmz9hGbQ&s" alt="Icon">
+                            {% endif %}
+                        </div>
+                        <h3 class="box-title">
+                            <a href="{% url 'services_details' s.slug %}">{{ s.name }}</a>
+                        </h3>
+                        <p class="box-text">{{ s.desc|truncatewords:20 }}</p>
+                        <a href="{% url 'services_details' s.slug %}" class="th-btn black-border">
+                            Read More <i class="fa-light fa-arrow-right-long ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

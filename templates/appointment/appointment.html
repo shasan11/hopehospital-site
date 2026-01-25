@@ -1,0 +1,241 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<!-- Breadcrumb -->
+<div class="breadcumb-wrapper">
+  <div class="container">
+    <div class="breadcumb-content">
+      <h1 class="breadcumb-title">Online Appointment</h1>
+      <ul class="breadcumb-menu">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li>Appointment</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section class="space" ng-app="apptApp" ng-controller="ApptCtrl as vm">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-8">
+        <div class="card p-4">
+          <h3 class="mb-3">Book an Appointment</h3>
+
+          <!-- Doctor -->
+          <div class="mb-3">
+            <label class="form-label">Doctor</label>
+            <select class="form-select"
+                    ng-model="vm.form.doctor_id"
+                    ng-change="vm.loadSlots()"
+                    ng-options="d.id as (d.name + (d.department ? ' — ' + d.department : '')) for d in vm.doctors">
+              <option value="">-- Select doctor --</option>
+            </select>
+          </div>
+
+          <!-- Date -->
+          <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input type="date"
+                   class="form-control"
+                   ng-model="vm.form.date"
+                   ng-change="vm.loadSlots()">
+            <div class="form-text">Select a date the doctor is available.</div>
+          </div>
+
+          <!-- Slot -->
+          <div class="mb-3">
+            <label class="form-label">Time Slot</label>
+            <select class="form-select"
+                    ng-model="vm.form.start_time"
+                    ng-options="s.start_time as (s.start_time + ' - ' + s.end_time) for s in vm.slots"
+                    ng-disabled="!vm.slots.length">
+              <option value="">-- Select slot --</option>
+            </select>
+            <div class="form-text" ng-if="vm.slots.length === 0">No slots available for the selected date & doctor.</div>
+          </div>
+
+          <!-- Patient -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Patient Name</label>
+              <input type="text" class="form-control" ng-model="vm.form.patient_name" placeholder="Full name">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-control" ng-model="vm.form.patient_phone" placeholder="98xxxxxxx">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email (optional)</label>
+            <input type="email" class="form-control" ng-model="vm.form.patient_email" placeholder="you@example.com">
+            <div class="form-text">We’ll email your appointment number here.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Reason (optional)</label>
+            <input type="text" class="form-control" ng-model="vm.form.reason" maxlength="200" placeholder="Short reason">
+          </div>
+
+          <button class="btn btn-primary" ng-click="vm.submit()" ng-disabled="vm.loading">
+            <span ng-if="!vm.loading">Book Appointment</span>
+            <span ng-if="vm.loading">Booking...</span>
+          </button>
+
+          <div class="alert alert-success mt-3" ng-if="vm.success">
+            <strong>Success!</strong>
+            Your appointment number is <code ng-bind="vm.code"></code>.
+            We have emailed it if you provided an email.
+          </div>
+          <div class="alert alert-danger mt-3" ng-if="vm.error">
+            <strong>Error:</strong> <span ng-bind="vm.error"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card p-4">
+          <h5>How it works</h5>
+          <ol class="mb-0">
+            <li>Select doctor & date.</li>
+            <li>Choose a free time slot.</li>
+            <li>Enter patient details and book.</li>
+            <li>Check your email for the appointment number.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+
+  angular.module('apptApp', [])
+  .controller('ApptCtrl', ['$http', function($http) {
+    var vm = this;
+
+    // --- STATE ---
+    vm.doctors = [];
+    vm.slots = [];
+    vm.form = {
+      doctor_id: '',
+      date: '',        // Angular may store a Date object or 'YYYY-MM-DD' depending on browser
+      start_time: '',
+      patient_name: '',
+      patient_phone: '',
+      patient_email: '',
+      reason: ''
+    };
+    vm.loading = false;
+    vm.success = false;
+    vm.error = '';
+    vm.code = '';
+
+    // --- HELPERS ---
+    function trimStr(v) { return (v || '').toString().trim(); }
+
+    function toYMD(val) {
+      if (!val) return '';
+      // already YYYY-MM-DD?
+      if (typeof val === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(val)) return val;
+      var d = (val instanceof Date) ? val : new Date(val);
+      if (Object.prototype.toString.call(d) !== '[object Date]' || isNaN(d)) return '';
+      var y = d.getFullYear();
+      var m = String(d.getMonth() + 1).padStart(2, '0');
+      var day = String(d.getDate()).padStart(2, '0');
+      return y + '-' + m + '-' + day;
+    }
+
+    function isYMD(s) { return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s); }
+
+    // --- LOADERS ---
+    vm.loadDoctors = function() {
+      $http.get("{% url 'api_doctors' %}").then(function(res) {
+        vm.doctors = res.data.doctors || [];
+      }, function() { vm.doctors = []; });
+    };
+
+    vm.loadSlots = function() {
+      vm.slots = [];
+
+      // Normalize date before asking server
+      var ymd = toYMD(vm.form.date);
+
+      if (!vm.form.doctor_id || !ymd) {
+        // console.log('loadSlots skipped (missing doctor_id/date)', vm.form);
+        return;
+      }
+
+      var url = "{% url 'api_slots' %}" +
+                "?doctor_id=" + encodeURIComponent(vm.form.doctor_id) +
+                "&date=" + encodeURIComponent(ymd);
+
+      // console.log('[HTTP REQUEST] GET', url);
+      $http.get(url).then(function(res) {
+        vm.slots = res.data.slots || [];
+      }, function(err) {
+        vm.slots = [];
+        // Optional: show a friendly hint
+        // vm.error = 'Could not load slots for the selected date/doctor.';
+      });
+    };
+
+    // --- SUBMIT ---
+    vm.submit = function() {
+      vm.loading = true;
+      vm.success = false;
+      vm.error = '';
+      vm.code = '';
+
+      // Build payload with normalized fields
+      var payload = {
+        doctor_id: vm.form.doctor_id,
+        date: toYMD(vm.form.date),
+        start_time: trimStr(vm.form.start_time),
+        patient_name: trimStr(vm.form.patient_name),
+        patient_phone: trimStr(vm.form.patient_phone),
+        patient_email: trimStr(vm.form.patient_email),
+        reason: trimStr(vm.form.reason)
+      };
+
+      // Validate required fields
+      var missing = [];
+      if (!payload.doctor_id) missing.push('doctor');
+      if (!isYMD(payload.date)) missing.push('date');
+      if (!payload.start_time) missing.push('time');
+      if (!payload.patient_name) missing.push('name');
+      if (!payload.patient_phone) missing.push('phone');
+
+      if (missing.length) {
+        vm.loading = false;
+        vm.error = 'Please fill all required fields (doctor, date, time, name, phone).';
+        // console.warn('Submit blocked, missing:', missing, 'payload:', payload);
+        return;
+      }
+
+      $http.post("{% url 'api_create_appointment' %}", payload).then(function(res) {
+        vm.loading = false;
+        if (res.data && res.data.ok) {
+          vm.success = true;
+          vm.code = res.data.appointment_code;
+        } else {
+          vm.error = 'Could not create appointment.';
+        }
+      }, function(err) {
+        vm.loading = false;
+        vm.error = (err.data && (err.data.errors || err.data)) ? JSON.stringify(err.data) : 'Server error';
+      });
+    };
+
+    // Init
+    vm.loadDoctors();
+  }]);
+})();
+</script>
+
+{% endblock content %}

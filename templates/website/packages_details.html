@@ -1,0 +1,73 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Breadcrumb -->
+<div class="breadcumb-wrapper" >
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ package.name }}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'packages' %}">Health Packages</a></li>
+                <li>{{ package.name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Package Details (blog-style layout) -->
+<section class="th-blog-wrapper blog-details space-top space-extra-bottom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xxl-12 col-lg-12">
+                <div class="th-blog blog-single">
+
+                    <!-- Cover Image -->
+                    {% if package.image %}
+                        <div class="blog-img global-img mb-4">
+                            <img src="{{ package.image.url }}" alt="{{ package.name }}">
+                        </div>
+                    {% endif %}
+
+                    <!-- Meta -->
+                    <div class="blog-content">
+                        <div class="blog-meta mb-3">
+                            <span class="price"><i class="fa-solid fa-tags text-white"></i>
+                               Rs. {{ package.price }}
+                            </span>
+                            {% if package.active %}
+                                <span class="badge bg-success ms-2 text-white">Available</span>
+                            {% else %}
+                                <span class="badge bg-secondary ms-2 text-white">Unavailable</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Title -->
+                        <h2 class="blog-title mb-3">{{ package.name }}</h2>
+
+                        <!-- Description -->
+                        {% if package.description %}
+                        <div class="blog-desc text-body">
+                            {{ package.description|safe }}
+                        </div>
+                        {% endif %}
+
+                        <!-- Actions -->
+                        <div class="mt-4 d-flex gap-3">
+                            <a href="{% url 'appointment' %}" class="th-btn black-border fw-btn">
+                                Book Now <i class="fa-regular fa-arrow-right ms-2"></i>
+                            </a>
+                            <a href="{% url 'packages' %}" class="line-btn">
+                                ← Back to all packages
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% load static %}
+
+<section class="team-area space overflow-hidden">
+  <div class="container z-index-common">
+    <div class="row justify-content-center">
+      <div class="col-xl-12">
+        <div class="title-area text-center pe-xl-5 ps-xl-5">
+          <span class="sub-title text-white text-anime-style-2">Expert Doctors</span>
+          <h2 class="sec-title text-white text-anime-style-3">
+            <span class="fw-normal">The Care You Need,</span> The Service You Deserve
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-wrap text-center">
+      <div class="swiper th-slider teamSlider2 has-shadow" id="teamSlider2"
+        data-slider-options='{"paginationType":"progressbar","breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":1},"768":{"slidesPerView":2},"992":{"slidesPerView":2},"1200":{"slidesPerView":3},"1400":{"slidesPerView":4}}}'>
+        
+        <div class="swiper-wrapper">
+          {% for d in nav_doctors|slice:":4" %}
+          <div class="swiper-slide">
+            <div class="th-team team-card style2">
+              
+              {% if d.image %}
+              <div class="box-img" data-bg-src="{{ d.image.url }}">
+                <img src="{{ d.image.url }}" alt="{{ d.name }}">
+              </div>
+              {% else %}
+              <div class="box-img" data-bg-src="{% static 'assets/img/team/default-doctor.jpg' %}">
+                <img src="{% static 'assets/img/team/default-doctor.jpg' %}" alt="{{ d.name }}">
+              </div>
+              {% endif %}
+
+              <div class="box-content">
+                <div>
+                  <h3 class="box-title">
+                    <a href="{% url 'doctor_details' d.slug %}">{{ d.name }}</a>
+                  </h3>
+                  <span class="team-desig">
+                    {% if d.department %}{{ d.department.name }}{% else %}Doctor{% endif %}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="slider-controller">
+          <button data-slider-prev="#teamSlider2" class="slider-arrow default slider-prev">
+            <i class="far fa-arrow-left"></i>
+          </button>
+          <div class="slider-pagination" data-slider-id="#teamSlider2"></div>
+          <button data-slider-next="#teamSlider2" class="slider-arrow default slider-next">
+            <i class="far fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

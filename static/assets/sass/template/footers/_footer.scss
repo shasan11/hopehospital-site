@@ -1,0 +1,811 @@
+.footer-wrapper {
+    --border-color: rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.fa-phone-volume {
+    transform: rotate(-45deg);
+}
+
+.widget-area {
+    padding-top: $space;
+    padding-bottom: 30px;
+}
+
+.footer-links {
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        font-size: 16px;
+        font-family: $body-font;
+        display: inline-block;
+        padding-right: 25px;
+        margin-right: 10px;
+        position: relative;
+
+        @include xs {
+            padding-right: 20px;
+            margin-right: 5px;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            top: 50%;
+            background-color: $theme-color;
+            right: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+            padding-right: 0;
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    a {
+        font-family: inherit;
+        color: #5C5F71;
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+}
+
+.copyright-wrap {
+    background-color: $white-color;
+    padding: 18px 0;
+}
+
+.copyright-text {
+    margin: 0;
+    color: $body-color;
+
+    a {
+        color: $theme-color;
+
+        &:hover {
+            color: $title-color;
+        }
+    }
+}
+
+.footer-text2 {
+    font-size: 18px;
+    margin-bottom: -0.4rem;
+}
+
+.th-widget-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+
+    @include xxl {
+        gap: 20px;
+    }
+
+    @include ml {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    @include xl {
+        grid-template-columns: auto auto;
+    }
+
+    @include md {
+        grid-template-columns: auto;
+    }
+
+    .info-box {
+        display: flex;
+        gap: 16px;
+        max-width: 357px;
+
+        @include vxs {
+            max-width: 100%;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .box-icon {
+            min-width: 56px;
+            height: 56px;
+            line-height: 56px;
+            text-align: center;
+            border: 1px solid rgba(92, 95, 113, 0.3);
+            border-radius: 48px;
+            color: $theme-color;
+            font-size: 20px;
+            transition: all 0.4s ease-in-out;
+
+            &:hover {
+                background-color: $theme-color;
+                border-color: $theme-color;
+                color: $white-color;
+            }
+
+            @include vxs {
+                max-width: 56px;
+                display: block;
+                margin: auto;
+            }
+
+        }
+
+        .box-title {
+            margin-bottom: 5px;
+        }
+
+        .box-text {
+            margin-bottom: 0;
+        }
+
+        .box-link {
+            color: $body-color;
+            display: block;
+        }
+    }
+
+    .divided {
+        width: 1px;
+        height: 71px;
+        background: rgba(92, 95, 113, 0.2);
+        border-radius: 24px;
+
+        @include xxl {
+            display: none;
+        }
+
+    }
+
+    .footer-btn {
+        @include sm {
+            text-align: center;
+        }
+
+        .th-btn {
+            font-size: 24px;
+            padding: 36px 30px;
+
+            @include xs {
+                font-size: 20px;
+                padding: 20px 20px;
+            }
+
+            @include vxs {
+                font-size: 18px;
+                padding: 20px 18px;
+            }
+        }
+    }
+}
+
+.copyright-wrap {
+    background-color: transparent;
+
+    .copyright-text {
+        color: $body-color;
+    }
+
+    .footer-links a {
+        color: #B7BDDE;
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+}
+
+.footer-top {
+    border-bottom: 1px solid rgba(183, 189, 222, 0.2);
+    padding: 48px 0;
+}
+
+.footer-newsletter-content {
+    @include lg {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+}
+
+@include md {
+    .footer-wrapper {
+        .widget-area {
+            padding-top: $space-mobile;
+            padding-bottom: 30px;
+        }
+    }
+
+    .footer-contact-wrap {
+        grid-template-columns: auto auto;
+        gap: 30px;
+    }
+
+    .copyright-text {
+        text-align: center;
+    }
+}
+
+.footer-tags {
+    .tagcloud {
+        a {
+            background-color: transparent;
+            border: 1px solid rgba(183, 189, 222, 0.2);
+            border-radius: 8px;
+            padding: 12.5px 15px;
+            font-weight: 400;
+            font-size: 18px;
+            letter-spacing: 0.02em;
+            color: $white-color;
+
+            &:not(:last-child) {
+                margin: 0 16px 16px 0;
+            }
+
+            &:hover {
+                background-color: $theme-color;
+            }
+
+        }
+    }
+
+    .btn-group {
+        margin-top: 32px;
+    }
+
+    .opening-hour {
+        display: flex;
+        gap: 12px;
+
+        .icon {
+            width: 56px;
+            height: 56px;
+            line-height: 56px;
+            text-align: center;
+            border: 1px solid rgba(183, 189, 222, 0.2);
+            border-radius: 8px;
+            transition: all 0.4s ease-in-out;
+
+            i {
+                color: $theme-color;
+                font-size: 20px;
+            }
+
+            &:hover {
+                background-color: $white-color;
+            }
+        }
+
+        .label {
+            font-weight: 400;
+            font-size: 16px;
+            letter-spacing: 0.02em;
+            color: #B7BDDE;
+            display: block;
+            margin-bottom: 5px;
+
+        }
+
+        .time {
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.02em;
+            color: $white-color;
+        }
+    }
+}
+
+/* footer-layout1 start ---------------------------*/
+.footer-layout1 {
+    background-repeat: no-repeat;
+    --smoke-color2: #5C5F71;
+    background-size: 100% 100%;
+
+    @include xxl {
+        background-size: auto;
+    }
+
+    .widget-area {
+        background-color: $white-color;
+        border-radius: 24px;
+        margin: 120px 150px 50px 150px;
+        padding: 72px 72px 0 72px;
+
+        @media(max-width: 1899px) {
+            margin: 120px 40px 0 40px;
+        }
+
+        @include xxl {
+            padding: 40px 40px 0 40px;
+        }
+
+        @include lg {
+            margin: 80px 10px 0 10px; 
+        }
+
+        @include vxs {
+            padding: 20px 20px 0 20px;
+        }
+    }
+
+    .footer-widget {
+        margin-bottom: 0px;
+
+        @include lg {
+            margin-bottom: 50px;
+        }
+
+        .widget_title {
+            max-width: 270px;
+            color: $title-color;
+        }
+    }
+
+
+    .th-widget-about .about-text {
+        color: #5C5F71;
+    }
+
+    .th-widget-about .footer-info {
+        color: $title-color;
+
+        &:not(:last-child) {
+            margin: 0 0 20px 0;
+        }
+
+        i {
+            border: 1px solid #DEDFE3;
+            color: $title-color;
+            transition: all 0.4s ease-in-out;
+
+            &:hover {
+                background-color: $theme-color;
+                color: $white-color;
+            }
+        }
+    }
+
+    .social-links {
+        .title {
+            color: $title-color;
+            @media(max-width: 480px) {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+
+        a {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            font-size: 14px;
+            color: var(--title-color);
+            text-align: center;
+            border-radius: 100px;
+            border: 1px solid #DEDFE3;
+            background-color: transparent;
+            color: $body-color;
+            margin: 0 10px 0 0;
+            transition: all 0.4s ease-in-out;
+
+            &:hover {
+                background-color: $theme-color;
+                color: $white-color;
+            }
+        }
+    }
+
+    .copyright-wrap {
+        border-top: 1px solid #DEDFE3;
+        margin-top: 60px;
+        padding: 20px 0;
+    }
+
+    .footer-widget-about {
+        @include xl {
+            margin-top: 40px;
+        }
+
+        @include lg {
+            margin: 0;
+        }
+    }
+    .heart-rate2 {
+        position: absolute;
+        bottom: 20px; 
+        left: 0;
+        width: 100%; 
+        height: 100px;
+        background-size: auto;
+        background-repeat: repeat-x;
+        z-index: 2;
+    }
+    .heart-rate {
+        width: auto; 
+        height: 100px;
+        background-size: auto;
+        background-repeat: repeat-x;
+    }
+
+    .heart-rate .fade-in {
+        background-color: #1C2359;
+        animation: heartRateIn 9.5s linear infinite;
+    }
+
+    .heart-rate .fade-out {
+        background-color: #1C2359;
+        animation: heartRateIn 9.5s linear infinite;
+    }
+}
+
+.footer-layout2 {
+    background-color: $title-color;
+    --body-color: #B7BEC8;
+
+    .widget-area {
+        padding-top: 65px;
+        padding-bottom: 36px;
+        border-bottom: 1px solid rgba(183, 189, 222, 0.2);
+    }
+
+    .footer-widget .th-widget-about {
+        position: relative;
+        z-index: 2;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: -66px;
+            right: -40px;
+            width: 1px;
+            height: 610px;
+            background-color: rgba(183, 189, 222, 0.2);
+
+            @media(max-width:1899px) {
+                height: 610px;
+            }
+
+            @media(max-width:1699px) {
+                height: 610px;
+            }
+
+            @include xxl {
+                display: none;
+            }
+
+
+        }
+    }
+
+    .social-links {
+        padding: 28px 0;
+
+        @include sm {
+            padding: 25px 0 15px 0;
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.02em;
+            color: $white-color;
+            margin-right: 16px;
+
+            @include vxs {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+        }
+
+        a {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            border: 1px solid rgba(183, 189, 222, 0.5);
+            border-radius: 50%;
+            margin: 0 10px 0 0;
+
+            &:hover {
+                background-color: $theme-color;
+                color: $white-color;
+                border-color: $theme-color;
+            }
+        }
+    }
+
+    .call-info {
+        max-width: 288px;
+        display: block;
+        margin-left: auto;
+        background-color: $white-color;
+        display: flex;
+        gap: 12px;
+        padding: 16px 24px;
+        text-align: left;
+
+        @include md {
+            padding: 15px 20px;
+        }
+
+        @include sm {
+            margin: auto;
+        }
+
+        &_icon {
+            width: 46px;
+            height: 46px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background: $theme-color;
+
+        }
+
+        &_label {
+            color: $theme-color;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+        }
+
+        &_link {
+            font-size: 18px;
+            font-family: $title-font;
+            letter-spacing: 0.02em;
+            color: $title-color;
+            margin-bottom: 0;
+
+            &:hover {
+                color: $theme-color;
+            }
+
+            a {
+                color: inherit;
+            }
+        }
+    }
+
+    &.style2 {
+        .footer-widget .th-widget-about:before {
+            content: "";
+            position: absolute;
+            top: -66px;
+            right: -40px;
+            width: 1px;
+            height: 625px;
+            background-color: rgba(183, 189, 222, 0.2);
+
+            @media(max-width: 1599px) {
+                height: 643px;
+            }
+
+            @media(max-width:1899px) {
+                height: 625px;
+            }
+
+            @media(max-width:1699px) {
+                height: 627px;
+            }
+
+            @include xxl {
+                display: none;
+            }
+        }
+
+        .widget-area {
+            margin-top: 120px;
+            border-top: 1px solid rgba(183, 189, 222, 0.2);
+
+            @include md {
+                margin-top: 65px;
+            }
+        }
+
+        .footer-widget {
+            margin-bottom: 34px;
+
+            .widget_title {
+                margin: -0.11em 0 48px 0;
+            }
+        }
+
+        .th-widget-about .about-text {
+            margin-bottom: 0;
+        }
+
+        .footer-wrapp {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            @include xl {
+                display: block;
+            }
+        }
+
+
+
+        .copyright-text {
+            color: #B7BDDE;
+
+            @include sm {
+                margin: 10px 0;
+            }
+
+            a {
+                &:hover {
+                    color: $white-color;
+                }
+            }
+        }
+
+        .footer-info {
+            display: block;
+            position: relative;
+            z-index: 2;
+
+            &:not(:last-child) {
+                padding-bottom: 5px;
+                margin-bottom: 32px;
+
+                @include xxl {
+                    padding-bottom: 0;
+                }
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 132%;
+                    height: 1px;
+                    background-color: rgba(183, 189, 222, 0.2);
+                    z-index: -1;
+
+                    @media(max-width:1699px) {
+                        width: 129%;
+                    }
+
+
+                    @include xxl {
+                        display: none;
+                    }
+                }
+            }
+
+            .box-title {
+                color: $white-color;
+                margin-bottom: 5px;
+            }
+
+            .box-text {
+                max-width: 260px;
+            }
+        }
+    }
+
+    .copyright-wrap {
+        border-top: 1px solid rgba(183, 189, 222, 0.2);
+    }
+
+    .copyright-text {
+        color: #B7BDDE;
+
+        @include sm {
+            margin: 10px 0;
+        }
+
+        a {
+            &:hover {
+                color: $white-color;
+            }
+        }
+    }
+}
+
+.footer-layout3 {
+    .footer-widget {
+        margin-bottom: 62px;
+    }
+
+    .widget-area {
+        padding-top: 80px;
+    }
+
+    .copyright-wrap .copyright-text {
+        color: #B7BDDE;
+    }
+
+    .footer-widget.widget_nav_menu a {
+        color: #B7BDDE;
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+
+    .footer-area {
+        background-color: $title-color;
+        border-radius: 24px;
+        width: 1760px;
+        max-width: 100%;
+        margin: 0px auto 0;
+        position: relative;
+        z-index: 1019;
+        transition: border-radius .2s, width 350ms ease;
+
+        @include xxl {
+            border-radius: 0;
+        }
+
+    }
+
+    .th-screen.th-visible {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .th-social {
+        @include md {
+            margin-bottom: 25px;
+        }
+
+        .title {
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 0.02em;
+            color: $white-color;
+        }
+
+        a {
+            --icon-size: 32px;
+            background-color: transparent;
+            border: 1px solid #5C5F71;
+            border-radius: 50%;
+            font-size: 14px;
+
+            &:hover {
+                border-color: $theme-color;
+            }
+
+        }
+    }
+
+    .th-widget-contact {
+        background-color: $white-color;
+        border-radius: 16px;
+        padding: 35px 24px 35px 35px;
+
+        @include xs {
+            padding: 25px 20px;
+        }
+
+    }
+
+    .copyright-text {
+
+        a {
+
+            &:hover {
+                color: $white-color;
+            }
+        }
+    }
+}

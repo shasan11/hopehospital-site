@@ -1,0 +1,74 @@
+{% extends 'website/base.html' %}
+{% block title %}
+Our Esteemed Doctors
+{% endblock title %}
+{% block content %}
+{% load static %}
+<div class="breadcumb-wrapper">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Our Doctors</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'gallery' %}">Our Doctors</a></li>
+                 
+            </ul>
+        </div>
+    </div>
+</div>
+<section class="position-relative overflow-hidden space overflow-hidden" id="service-sec">
+  <div class="container">
+    <div class="row gy-4">
+      {% for doctor in nav_doctors %}
+      <div class="col-md-6 col-lg-4 col-xxl-3">
+        <div class="th-team team-card">
+          <div class="box-img">
+            {% if doctor.image %}
+            <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}">
+            {% else %}
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgTuhiv1V4Z6Lb3Fh0oOaU1FY_iTmTUGB_jA&s" alt="{{ doctor.name }}" style="width: 500px;height:300px">
+            {% endif %}
+          </div>
+          <div class="box-content">
+            <div>
+              <h3 class="box-title">
+                {% if doctor.slug %}
+                <a href="{% url 'doctor_details' slug=doctor.slug %}">{{ doctor.name }}</a>
+                {% else %}
+                {{ doctor.name }}
+                {% endif %}
+
+              </h3>
+              <span class="team-desig">{{ doctor.position}}</span>
+              <span class="team-desig">{{ doctor.department.name }}</span>
+            </div>
+            <div class="team-social">
+              <div class="icon-btn"><i class="fa-light fa-plus"></i></div>
+              <div class="th-social">
+                {% if doctor.facebook %}
+                <a target="_blank" href="{{ doctor.facebook }}"><i class="fab fa-facebook-f"></i></a>
+                {% endif %}
+                {% if doctor.twitter %}
+                <a target="_blank" href="{{ doctor.twitter }}"><i class="fab fa-twitter"></i></a>
+                {% endif %}
+                {% if doctor.instagram %}
+                <a target="_blank" href="{{ doctor.instagram }}"><i class="fab fa-instagram"></i></a>
+                {% endif %}
+                {% if doctor.linkedin %}
+                <a target="_blank" href="{{ doctor.linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p class="text-center m-0">No doctors available at the moment.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

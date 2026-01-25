@@ -1,0 +1,82 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Breadcrumb -->
+<div class="breadcumb-wrapper">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Latest News</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li>Latest News</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- News List -->
+<section class="th-news-wrapper space-top space-extra-bottom">
+    <div class="container">
+        <div class="row">
+            {% for item in latest_news_items %}
+            <div class="col-lg-6 col-xl-4 mb-4 border border-black p-8">
+                <div class="th-news news-single has-post-thumbnail single-grid p-5">
+                    
+                    <!-- News Image -->
+                    <div class="news-img global-img">
+                        <a href="{% url 'latest_news_details' item.slug %}">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="{{ item.title|default:'News' }}">
+                            {% else %}
+                                <img src="{% static 'assets/img/news/news-placeholder.jpg' %}" alt="{{ item.title|default:'News' }}">
+                            {% endif %}
+                        </a>
+                    </div>
+
+                    <!-- News Content -->
+                    <div class="news-content">
+                        <div class="news-meta">
+                            {% if item.published_at %}
+                            <span><i class="fa-solid fa-calendar-days"></i>
+                                {{ item.published_at|date:"M d, Y" }}
+                            </span>
+                            {% endif %}
+                            {% if item.author %}
+                            <span><i class="fa-solid fa-user"></i>
+                                {{ item.author.get_full_name|default:"Editorial" }}
+                            </span>
+                            {% endif %}
+                            {% if item.is_breaking %}
+                            <span class="badge bg-danger">Breaking</span>
+                            {% endif %}
+                        </div>
+
+                        <h2 class="box-title mt-2">
+                            <a href="{% url 'latest_news_details' item.slug %}">
+                                {{ item.title }}
+                            </a>
+                        </h2>
+
+                        {% if item.summary %}
+                            <p>{{ item.summary }}</p>
+                        {% else %}
+                            <p>{{ item.content|striptags|truncatewords:25 }}</p>
+                        {% endif %}
+
+                        <a href="{% url 'latest_news_details' item.slug %}" class="line-btn">
+                            Read More <i class="fa-light fa-arrow-right-long ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No news available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

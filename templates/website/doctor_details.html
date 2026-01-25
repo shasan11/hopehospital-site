@@ -1,0 +1,53 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcumb-wrapper">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ doctor.name }}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'doctors' %}">Our Doctors</a></li>
+                <li><a href="{% url 'gallery' %}">{{ doctor.name }}</a></li>
+                 
+            </ul>
+        </div>
+    </div>
+</div>
+<section class="space">
+  <div class="container">
+    <div class="team-details">
+      <div class="row gy-4">
+        <div class="col-lg-5">
+          <div class="th-team team-card">
+            <div class="box-img">
+              {% if doctor.image %}
+                <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}">
+              {% else %}
+                <img src="{% static 'assets/img/team/default-doctor.png' %}" alt="{{ doctor.name }}">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="team-about">
+            <div>
+              <h3 class="team-about_title">{{ doctor.name }}</h3>
+              <p class="team-about_desig">{{ doctor.position }}</p>
+              {% if doctor.department %}
+                <h4 class="team-about_desig">{{ doctor.department.name }}</h4>
+              {% endif %}
+            </div>
+
+            {% if doctor.description %}
+              <p class="team-about_text">{{ doctor.description|linebreaksbr|safe }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

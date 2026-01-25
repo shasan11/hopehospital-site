@@ -1,0 +1,79 @@
+{% load static %}
+<section class="positive-relative overflow-hidden space overflow-hidden" id="blog-sec">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-7">
+                    <div class="title-area text-center">
+                        <span class="sub-title sub-title2 text-anime-style-2 text-dark">news & blog</span>
+                        <h2 class="sec-title  text-anime-style-3"><span class="fw-normal">Hope's</span> Latest Articles & Blog</h2>
+                        <p class="sec-text fs-18 wow fadeInUp">Get Up to Date with out Latest News Blogs and Editorials</p>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+      {% for post in latest_blog_posts %}
+      <div class="col-lg-6 col-xl-4 mb-4 border  border-black p-8">
+        <div class="th-blog blog-single has-post-thumbnail single-grid">
+          
+          <!-- Blog Image -->
+          <div class="blog-img global-img">
+            <a href="{% url 'blogs_details' post.slug %}">
+              {% if post.cover_image %}
+                <img src="{{ post.cover_image.url }}" alt="{{ post.title|default:'Blog Post' }}">
+              {% else %}
+                <img src="{% static 'assets/img/blog/blog-grid-1.jpg' %}" alt="{{ post.title|default:'Blog Post' }}">
+              {% endif %}
+            </a>
+          </div>
+
+          <!-- Blog Content -->
+          <div class="blog-content">
+            <div class="blog-meta">
+              <a class="author" href="#">
+                <i class="fa-solid fa-user"></i>
+                {{ post.author.get_full_name|default:"Editorial" }}
+              </a>
+              {% if post.published_at %}
+              <a href="#">
+                <i class="fa-solid fa-calendar-days"></i>
+                {{ post.published_at|date:"M d, Y" }}
+              </a>
+              {% endif %}
+              {% if post.category %}
+              <a href="#">
+                <i class="fa-solid fa-tag"></i>
+                {{ post.category.name }}
+              </a>
+              {% endif %}
+            </div>
+
+            <h2 class="box-title mt-2">
+              <a href="{% url 'blogs_details' post.slug %}">
+                {{ post.title }}
+              </a>
+            </h2>
+
+            {% if post.excerpt %}
+              <p>{{ post.excerpt|safe }}</p>
+            {% else %}
+              <p>{{ post.content|striptags|truncatewords:25 }}</p>
+            {% endif %}
+
+            <a href="{% url 'blogs_details' post.slug %}" class="line-btn">
+              Read More <i class="fa-light fa-arrow-right-long ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p class="text-center text-muted">No articles available.</p>
+      </div>
+      {% endfor %}
+    </div>
+        </div>
+        <div class="shape-mockup movingX d-none d-lg-block" data-top="10%" data-right="5%"><img src="assets/img/shape/element-13.png" alt="">
+        </div>
+        <div class="shape-mockup spin d-none d-lg-block" data-bottom="2%" data-left="5%"><img src="assets/img/shape/element-10.png" alt="">
+        </div>
+    </section>

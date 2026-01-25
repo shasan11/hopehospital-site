@@ -1,0 +1,98 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block content %}
+<div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcumb-bg.jpg">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">{{ department.name }}</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'department' %}">Department</a></li>
+                <li>{{ department.name }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<section class="space px-5">
+    <div class="container">
+        <div class="department-details">
+            <div class="row gy-4">
+                <div class="col-lg-6">
+
+                    {% if department.icon %}
+                    <div class="box-icon mb-3">
+                        <img src="{{ department.icon.url }}" alt="{{ department.name }} Icon" class="w-75" style="width:50%;">
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="department-title">{{ department.name }}</h2>
+                    {% if department.description %}
+                    <p class="department-description">{{ department.description|safe}}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Department Services -->
+<section class="space px-5">
+    <div class="p-0">
+        <h4 class="department-title text-center px-5">We Provide The Best {{department.name}} Services for You.</h4>
+        <div class="row g-4 d-flex justify-content-center">
+            {% for service in dept_services %}
+            <div class="col-md-3 col-lg-3 p-2">
+                <div class="service-card style2" style="padding:10px">
+                    <div class="box-content p-2">
+
+                        <h3 class="box-title"><a href="#">{{ service.name }}</a></h3>
+                        {% if service.description %}
+                        <p class="box-text">{{ service.description|truncatewords:20 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+ 
+<!-- Doctors for Department -->
+<section class="team-area space overflow-hidden" data-bg-src="https://www.keckmedicine.org/wp-content/uploads/2021/11/Medical-doctors-and-nurse-practitioners-discuss-paperwork-in-a-hallway.jpg">
+    <div class="container z-index-common">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 text-center">
+                <div class="title-area">
+                    <span class="sub-title text-white text-anime-style-2">Expert Doctors</span>
+                    <h2 class="sec-title text-white text-anime-style-3"><span class="fw-normal">The Care You
+                            Need,</span> The Service You Deserve</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-4">
+            {% for doctor in doctors %}
+            <div class="col-md-12 col-lg-4">
+                <div class="th-team team-card style2">
+                    <div class="box-img">
+                        {% if doctor.image %}
+                        <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}">
+                         
+                        {% endif %}
+                    </div>
+                    <div class="box-content text-center mt-3">
+                        <h3 class="box-title"><a href="{% url 'doctor_details' doctor.slug %}">{{ doctor.name }}</a>
+                        </h3>
+                        <h5 class="box-title">
+                            {% if doctor.position%}{{ doctor.position }}{% else %}Doctor{% endif %}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

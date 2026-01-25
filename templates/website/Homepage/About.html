@@ -1,0 +1,129 @@
+{% load static %}
+
+<!-- ==============================
+Feature / Quick Actions
+============================== -->
+<div class="position-relative space">
+  <div class="container">
+    <div class="row gy-4 justify-content-center">
+
+      <!-- Immediate Care -->
+      <div class="col-md-6 col-xl-4 feature-card_wrapp wow fadeInLeft" data-wow-delay=".2s">
+        <div class="feature-card th-ani">
+          <h3 class="box-title text-anime-style-2 text-dark">Need Immediate Care?</h3>
+          <p class="box-text">
+            Hope Hospital offers 24/7 Emergency with Triage, ICU/HDU support, and on-call specialists.
+            Quick response, compassionate care.
+          </p>
+          <a href="{% url 'contact' %}" class="th-btn black-border">
+            Emergency & Ambulance <i class="fa-regular fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quality & Patient Safety -->
+      <div class="col-md-6 col-xl-4 feature-card_wrapp wow fadeInUp" data-wow-delay=".4s">
+        <div class="feature-card th-ani">
+          <h3 class="box-title text-anime-style-2">Quality & Patient Safety</h3>
+          <p class="box-text">
+            Evidence-based protocols, infection-control standards, and continuous monitoring to ensure
+            safer outcomes for every patient.
+          </p>
+          <a href="{% url 'about_intro' %}" class="th-btn black-border">
+            More About Us <i class="fa-regular fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Appointments -->
+      <div class="col-md-6 col-xl-4 feature-card_wrapp wow fadeInRight" data-wow-delay=".6s">
+        <div class="feature-card th-ani">
+          <h3 class="box-title text-anime-style-2">Unlock Your Wellness Journey</h3>
+          <p class="box-text">
+            Consult with expert doctors across departments—book OPD visits, health packages, and follow-ups online.
+          </p>
+          <a href="{% url 'appointment' %}" class="th-btn black-border">
+            Make Appointment <i class="fa-regular fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==============================
+About Area
+============================== -->
+<div class="about-area overflow-hidden space-bottom" id="about-sec">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-xxl-8 mb-30 mb-xl-0">
+        <div class="title-area">
+          <span class="sub-title text-anime-style-28 text-dark">About Hope Hospital</span>
+          <h2 class="sec-title text-anime-style-3">
+            <span class="fw-normal">Expert Doctors</span>, Seamless Appointments, Quality Care
+          </h2>
+        </div>
+
+        <div class="img-box1">
+          <div class="about-wrapper">
+            <div class="img1">
+              <img src="{% static 'assets/img/hope-image-8.jpg' %}" alt="Hope Hospital — About">
+              <!-- Optional intro video -->
+               
+            </div>
+
+            <div>
+              <p class="fs-18 mb-30 wow fadeInUp" data-wow-delay=".1s">
+                Hope Hospital is a multi-specialty healthcare center in Sinamangal, Kathmandu, Nepal,
+                dedicated to delivering compassionate, affordable, and reliable medical services.
+                From Emergency & ICU to Diagnostics, Pharmacy, and specialized OPD clinics—our team
+                ensures timely treatment and patient-first care.
+              </p>
+
+              <div class="checklist mb-50">
+                <ul>
+                  <li class="wow fadeInUp" data-wow-delay=".1s">24/7 Emergency, ICU/HDU & Ambulance support</li>
+                  <li class="wow fadeInUp" data-wow-delay=".3s">Experienced consultants across major specialties</li>
+                  <li class="wow fadeInUp" data-wow-delay=".5s">Advanced diagnostics: Pathology, Radiology & Imaging</li>
+                  <li class="wow fadeInUp" data-wow-delay=".7s">Pharmacy & Health Packages for preventive care</li>
+                  <li class="wow fadeInUp" data-wow-delay=".9s">Clean, safe, patient-centric environment</li>
+                </ul>
+              </div>
+
+              <div class="btn-group mt-40 wow fadeInUp" data-wow-delay=".4s">
+                <a href="{% url 'about_intro' %}" class="th-btn style2">
+                  More About Us <i class="fa-light fa-arrow-right-long ms-2"></i>
+                </a>
+
+                <div class="call-info">
+                  <div class="call-icon">
+                    <a href="tel:+9779800000000" aria-label="Call Hope Hospital">
+                      <i class="fa-solid fa-phone-volume"></i>
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <span class="call-label">For emergency, Call Now</span>
+                    <!-- Replace with your real emergency number -->
+                    <p class="call-link"><a href="tel:+9779800000000">{{site_settings.phone1}}</a></p>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /text -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xxl-4">
+         
+      </div><!-- /col-xxl-4 -->
+    </div>
+  </div>
+
+  <!-- decorative shape -->
+  <div class="shape-mockup" data-bottom="7%" data-left="0%">
+    <img src="{% static 'assets/img/shape/element-1.png' %}" alt="">
+  </div>
+</div>

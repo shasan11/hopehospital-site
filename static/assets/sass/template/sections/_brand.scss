@@ -1,0 +1,160 @@
+/* brand start ------------------------*/
+.patient-feedback {
+    position: relative;
+    background-color: $white-color;
+    border: 1px solid #DEDFE3;
+    border-radius: 24px;
+    padding: 11px 24px;
+    font-size: 18px;
+    display: inline-block;
+    margin-bottom: 56px;
+
+    .title {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: 0.02em;
+        color: $title-color;
+
+    }
+
+    .box-review {
+        margin: 0 16px;
+
+        i {
+            color: #FFA439;
+        }
+    }
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 448px;
+        height: 1px;
+        background-color: #DEDFE3;
+        z-index: -1;
+    }
+
+    &:before {
+        left: -80%;
+    }
+
+    &:after {
+        right: -80%;
+    }
+
+}
+
+.brand-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.brandSlider3 {
+    margin-right: 10px;
+}
+
+.brand-item {
+    width: 217px;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+
+    @include lg {
+        margin-right: auto;
+    }
+
+    @media(max-width: 480px) {
+        margin: auto;
+    }
+
+
+    &:hover {
+        a img {
+            &.gray {
+
+                opacity: 1;
+                visibility: visible;
+                transition: all 0.7s ease-in-out;
+                transform: translateY(0%);
+
+            }
+
+            &.original {
+
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.7s ease-in-out;
+                transform: translateY(100%);
+            }
+        }
+    }
+
+    img {
+        margin: 0 auto;
+        transition: all 0.7s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        &.gray {
+
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.7s ease-in-out;
+            transform: translateY(-100%);
+        }
+
+        &.original {
+            transition: all 0.7s ease-in-out;
+            transform: translateY(0%);
+        }
+    }
+}
+
+.brand-card {
+    border: 1px solid #DEDFE3;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.brand-sec3 {
+    position: relative;
+    margin: -60px 100px 0 0;
+    clip-path: path("M100 0H1820V200H0L100 0Z");
+    z-index: 2;
+
+    .container {
+        --main-container: 1570px;
+    }
+
+    @media(min-width: 1930px) {
+        clip-path: path("M183.132 0H3333V200H0L183.132 0Z");
+    }
+
+    @include xxl {
+        margin: -60px 0 0 0;
+    }
+
+    @include xl {
+        clip-path: none;
+    }
+}
+
+
+.brand-text {
+    max-width: 576px;
+    display: block;
+    margin: auto;
+}
+
+.brandSlider6 {
+    .swiper-wrapper {
+        gap: 35px 0;
+    }
+}

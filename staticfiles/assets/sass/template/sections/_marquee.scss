@@ -1,0 +1,119 @@
+/* Marquee 1---------------------------------- */
+.marquee-area {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    overflow: hidden;
+    background-attachment: fixed;
+    z-index: 2;
+    background-color: $title-color;
+
+}
+
+
+.marquee {
+    position: relative;
+    --duration: 120s;
+    --gap: 35px;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+
+    &:first-child {
+        --duration: 100s;
+    }
+
+    &:last-child {
+        --duration: 80s;
+    }
+
+    &.marquee--reverse {
+        .marquee-group {
+            --gap: 35px;
+            animation-direction: reverse;
+        }
+    }
+
+    .marquee-group {
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: distribute;
+        justify-content: flex-start;
+        gap: var(--gap);
+        animation: scroll var(--duration) linear infinite;
+
+        &.style2 {
+            .item {
+                font-family: $body-font;
+                font-weight: 700;
+                font-size: 57px;
+                letter-spacing: 0.02em;
+                color: #1C2359;
+                -webkit-text-fill-color: transparent; 
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: #1C2359;
+
+            }
+        }
+
+        .img {
+            margin: 20px;
+        }
+
+        .item {
+            font-family: $title-font;
+            font-size: 30px;
+            font-weight: 700;
+            color: $title-color;
+            display: inline-block;
+            cursor: pointer;
+            font-family: $title-font;
+            font-weight: 500;
+            font-size: 74px;
+            line-height: 84px;
+            letter-spacing: 0.02em;
+            font-weight: 300;
+            font-size: 57px;
+            line-height: 72px;
+            color: $white-color;
+            transition: all 0.4s ease-in-out;
+
+            span {
+                margin: 0px;
+            }
+
+            img {
+                margin: 0;
+                margin-right: 35px;
+            }
+        }
+    }
+}
+
+/* marquee-area3 start -----------------------------*/
+.marquee-area3 {
+    position: relative;
+    z-index: 2;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: $title-color;
+        transform: rotate(-2deg);
+        //margin-left: -4px;
+        z-index: -1;
+    }
+
+}

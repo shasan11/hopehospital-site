@@ -1,0 +1,188 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="breadcumb-wrapper">
+  <div class="container">
+    <div class="breadcumb-content">
+      <h1 class="breadcumb-title">Careers</h1>
+      <ul class="breadcumb-menu">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li>Careers</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section class="space overflow-hidden">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- Filters -->
+      <aside class="col-lg-3">
+        <div class="widget th-ani">
+          <h4 class="widget_title">Filter Jobs</h4>
+          <form method="get">
+            <div class="mb-3">
+              <label class="form-label">Search</label>
+              <input type="text" name="q" class="form-control" value="{{ selected.q|default:'' }}" placeholder="Title, tags, location...">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Department</label>
+              <select name="department" class="form-select">
+                <option value="">All</option>
+                {% for d in departments %}
+                  <option value="{{ d.slug }}" {% if selected.department == d.slug %}selected{% endif %}>{{ d.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Location</label>
+              <select name="location" class="form-select">
+                <option value="">All</option>
+                {% for l in locations %}
+                  <option value="{{ l.slug }}" {% if selected.location == l.slug %}selected{% endif %}>{{ l.name }}{% if l.city %}, {{ l.city }}{% endif %}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Specialty</label>
+              <select name="specialty" class="form-select">
+                <option value="">All</option>
+                {% for s in specialties %}
+                  <option value="{{ s.slug }}" {% if selected.specialty == s.slug %}selected{% endif %}>{{ s.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Employment</label>
+                <select name="employment_type" class="form-select">
+                  <option value="">All</option>
+                  {% for val,label in employment_types %}
+                    <option value="{{ val }}" {% if selected.employment_type == val %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label">Shift</label>
+                <select name="shift" class="form-select">
+                  <option value="">All</option>
+                  {% for val,label in shift_types %}
+                    <option value="{{ val }}" {% if selected.shift == val %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Min Exp (yrs)</label>
+                <input type="number" min="0" name="exp_min" class="form-control" value="{{ selected.exp_min|default:'' }}">
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label">Max Exp (yrs)</label>
+                <input type="number" min="0" name="exp_max" class="form-control" value="{{ selected.exp_max|default:'' }}">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Posted within</label>
+              <select name="posted" class="form-select">
+                <option value="">Anytime</option>
+                <option value="7"  {% if selected.posted == '7' %}selected{% endif %}>Last 7 days</option>
+                <option value="14" {% if selected.posted == '14' %}selected{% endif %}>Last 14 days</option>
+                <option value="30" {% if selected.posted == '30' %}selected{% endif %}>Last 30 days</option>
+              </select>
+            </div>
+
+            <div class="mb-3 form-check">
+              <input class="form-check-input" type="checkbox" name="remote" value="1" id="remoteChk" {% if selected.remote == '1' %}checked{% endif %}>
+              <label class="form-check-label" for="remoteChk">Remote allowed</label>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select name="status" class="form-select">
+                <option value="OPEN" {% if selected.status == 'OPEN' or not selected.status %}selected{% endif %}>Open</option>
+                <option value="CLOSED" {% if selected.status == 'CLOSED' %}selected{% endif %}>Closed/ Filled</option>
+                <option value="ALL" {% if selected.status == 'ALL' %}selected{% endif %}>All</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Order</label>
+              <select name="order" class="form-select">
+                <option value="-created" {% if selected.order == '-created' or not selected.order %}selected{% endif %}>Newest</option>
+                <option value="created"  {% if selected.order == 'created' %}selected{% endif %}>Oldest</option>
+                <option value="deadline" {% if selected.order == 'deadline' %}selected{% endif %}>Deadline ↑</option>
+                <option value="-deadline" {% if selected.order == '-deadline' %}selected{% endif %}>Deadline ↓</option>
+                <option value="title" {% if selected.order == 'title' %}selected{% endif %}>Title A–Z</option>
+                <option value="-title" {% if selected.order == '-title' %}selected{% endif %}>Title Z–A</option>
+              </select>
+            </div>
+
+            <button class="th-btn w-100">Apply Filters</button>
+          </form>
+        </div>
+      </aside>
+
+      <!-- Results -->
+      <div class="col-lg-9">
+        <div class="row g-4">
+          {% for job in jobs %}
+          <div class="col-md-6 col-xl-4">
+            <div class="service-card style2 th-ani">
+              
+              <div class="box-content">
+                <div class="blog-meta mb-1">
+                  <span><i class="fa-regular fa-building"></i> {{ job.department.name }}</span>
+                  <span class="ms-3"><i class="fa-regular fa-location-dot"></i> {{ job.location.name }}</span>
+                </div>
+                <h3 class="box-title"><a href="{% url 'career_detail' job.slug %}">{{ job.title }}</a></h3>
+                <p class="box-text">
+                  {% if job.short_description %}{{ job.short_description }}{% else %}{{ job.description|striptags|truncatechars:140 }}{% endif %}
+                </p>
+                <div class="d-flex align-items-center justify-content-between">
+                  <small><i class="fa-regular fa-clock"></i> {{ job.get_employment_type_display }}</small>
+                  {% if job.application_deadline %}
+                  <small class="text-danger"><i class="fa-regular fa-calendar"></i> {{ job.application_deadline|date:"M d, Y" }}</small>
+                  {% endif %}
+                </div>
+                <a class="line-btn mt-2" href="{% url 'career_detail' job.slug %}">View Details <i class="fa-regular fa-arrow-right ms-2"></i></a>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="col-12">
+            <div class="alert alert-info">No jobs match your filters. Try clearing some filters.</div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <nav class="th-pagination mt-4">
+          <ul>
+            {% if page_obj.has_previous %}
+              <li><a href="?page={{ page_obj.previous_page_number }}&{{ querystring }}"><i class="far fa-arrow-left"></i></a></li>
+            {% else %}
+              <li class="disabled"><span><i class="far fa-arrow-left"></i></span></li>
+            {% endif %}
+            <li><span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span></li>
+            {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}&{{ querystring }}"><i class="far fa-arrow-right"></i></a></li>
+            {% else %}
+              <li class="disabled"><span><i class="far fa-arrow-right"></i></span></li>
+            {% endif %}
+          </ul>
+        </nav>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

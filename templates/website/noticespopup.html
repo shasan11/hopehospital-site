@@ -1,0 +1,123 @@
+{% comment %}
+Include this near </body>.
+Requires:
+  - Bootstrap 5 CSS & JS loaded
+  - `active_notices` in context
+  - `request` in template context (django.template.context_processors.request)
+{% endcomment %}
+
+{% if request.path == "/" and active_notices %}
+  <style>
+    /* Modal polish */
+    .notice-modal .modal-content {
+      border: 0;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      overflow: hidden;
+    }
+    .notice-modal .modal-header {
+      border: 0;
+      padding-bottom: .25rem;
+    }
+    .notice-modal .modal-body {
+      padding-top: .25rem;
+    }
+    /* Backdrop blur effect */
+    .modal-backdrop.show {
+      backdrop-filter: blur(2px);
+    }
+    /* Smooth zoom-in */
+    .notice-modal .modal-dialog {
+      transform: scale(.98);
+      transition: transform .2s ease;
+    }
+    .notice-modal.show .modal-dialog {
+      transform: scale(1);
+    }
+  </style>
+
+  {% for notice in active_notices %}
+    <div class="modal fade notice-modal" id="noticeModal-{{ notice.pk }}" tabindex="-1"
+         aria-labelledby="noticeModalLabel-{{ notice.pk }}" aria-hidden="true"
+         style="z-index:12000">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="noticeModalLabel-{{ notice.pk }}">
+              {{ notice.title }}
+            </h5>
+
+            <!-- Close button -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            {{ notice.message|safe }}
+
+            {% if notice.attachment %}
+              <div class="mt-3 text-center">
+                <img src="{{ notice.attachment.url }}" class="img-fluid rounded" alt="Attachment"/>
+                <div class="mt-2">
+                  <a href="{{ notice.attachment.url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                    View Attachment
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+
+            {% if notice.link_url %}
+              <div class="mt-3 text-end">
+                <a href="{{ notice.link_url }}" target="_blank" class="btn btn-primary btn-sm">
+                  More Info
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Ensure only homepage
+      if (location.pathname !== "/") return;
+
+      // Show only once per session
+       
+
+      // Collect modal IDs
+      const ids = [{% for notice in active_notices %}"#noticeModal-{{ notice.pk }}"{% if not forloop.last %},{% endif %}{% endfor %}];
+      let idx = 0;
+
+      function showNext() {
+        if (idx >= ids.length) return;
+
+        const sel = ids[idx++];
+        const el = document.querySelector(sel);
+        if (!el) return showNext();
+
+        if (typeof bootstrap === "undefined" || !bootstrap.Modal) {
+          console.warn("Bootstrap JS not loaded; cannot show notices.");
+          return;
+        }
+
+        // Delay for smooth load
+        setTimeout(() => {
+          const modal = new bootstrap.Modal(el, {
+            backdrop: true,   // allow click outside to close
+            keyboard: true    // allow ESC to close
+          });
+
+          el.addEventListener("hidden.bs.modal", showNext, { once: true });
+          modal.show();
+
+          // Add "show" class for zoom animation
+          el.addEventListener("shown.bs.modal", () => el.classList.add("show"), { once: true });
+        }, 250);
+      }
+
+      showNext();
+    });
+  </script>
+{% endif %}

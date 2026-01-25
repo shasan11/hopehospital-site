@@ -1,0 +1,304 @@
+{% extends "website/base.html" %}
+{% load static %}
+<style>
+    .project-card .box-img {
+  width: 100%;
+  aspect-ratio: 16/9;   /* Landscape ratio */
+  height: 40px I !important;
+  overflow: hidden;
+}
+
+.project-card .box-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* Fill without stretching */
+  object-position: center;
+  display: block;
+}
+
+</style>
+{% block content %}
+<div class="breadcumb-wrapper">
+  <div class="container">
+    <div class="breadcumb-content">
+      <h1 class="breadcumb-title">About Hope Hospital</h1>
+      <ul class="breadcumb-menu">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li>About Us</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- About Area -->
+<div class="about-area overflow-hidden space" id="about-sec">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-xxl-6">
+        <div class="img-box4 me-xl-3">
+          <div class="img1 reveal">
+            <img src="{% static 'assets/img/hope-image-1.jpg' %}" alt="About Hope Hospital" style="width: 766px;height:670px">
+          </div>
+          <div class="about-wrapp">
+            <div class="discount-wrapp">
+              <div class="logo">
+                <img src="{{site_settings.logo.url}}" alt="Hope Hospital" class="w-75">
+              </div>
+              <div class="discount-tag">
+                <span class="discount-anime">Hope Hospital • Compassionate Care • Advanced Medicine • 24/7 Emergency</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xxl-6 mb-30 mb-xl-0">
+        <div class="title-area">
+          <span class="sub-title text-anime-style-2">About us</span>
+          <h2 class="sec-title text-anime-style-3">
+            <span class="fw-normal">Expert Doctors,</span> Seamless Appointments, Quality Care
+          </h2>
+          <p class="fs-18 mb-30 pe-xl-5 wow fadeInUp">
+            Hope Hospital is a multidisciplinary healthcare center committed to safe, evidence-based medicine and a
+            patient-first approach. Our team of specialists delivers comprehensive care—from emergency and critical
+            care to maternity, pediatrics, cardiology, orthopedics, and advanced diagnostics—supported by modern
+            infrastructure and compassionate service.
+          </p>
+        </div>
+
+        <div class="about-wrapper style2">
+          <div>
+            <div class="checklist mb-50">
+              <ul>
+                <li class="wow fadeInUp" data-wow-delay=".1s">Specialized departments led by board-certified experts</li>
+                <li class="wow fadeInUp" data-wow-delay=".3s">Holistic, personalized treatment plans</li>
+                <li class="wow fadeInUp" data-wow-delay=".5s">International clinical protocols & continuous audits</li>
+                <li class="wow fadeInUp" data-wow-delay=".7s">Advanced ICU, OT, NICU & Imaging facilities</li>
+                <li class="wow fadeInUp" data-wow-delay=".8s">Transparent communication & ethical care</li>
+              </ul>
+            </div>
+
+            <div class="btn-group mt-40 wow fadeInUp" data-wow-delay=".5s">
+              <a href="{% url 'about_intro' %}" class="th-btn style2">
+                More About Us <i class="fa-light fa-arrow-right-long ms-2"></i>
+              </a>
+              <div class="call-info">
+                <div class="call-icon">
+                  <a href="tel:+9771660012345" aria-label="Emergency phone"><i class="fa-solid fa-phone-volume"></i></a>
+                </div>
+                <div class="media-body">
+                  <span class="call-label">For emergency, Call Now</span>
+                  <p class="call-link"><a href="tel:+9771660012345">{{site_settings.phone1}}</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-img2 wow fadeInUp">
+            <img src="{% static 'assets/img/normal/about-video.jpg' %}" alt="Inside Hope Hospital">
+            <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk" class="video-play-btn popup-video" aria-label="Play hospital introduction video">
+              <i class="fa-solid fa-play"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Focus Highlights -->
+<div class="position-relative">
+  <div class="container">
+    <div class="row gy-4 justify-content-center">
+
+      <!-- Immediate Care -->
+      <div class="col-md-6 col-xl-4 feature-card_wrapp wow fadeInLeft" data-wow-delay=".2s">
+        <div class="feature-card th-ani">
+          <h3 class="box-title text-anime-style-2">Need Immediate Care?</h3>
+          <p class="box-text">
+            24/7 Emergency & Trauma, rapid triage, ambulance network, and on-call specialists.
+          </p>
+          <a href="tel:+9771660012345" class="th-btn black-border">
+            Emergency Call: {{site_settings.phone1}} <i class="fa-regular fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quality & Safety -->
+      <div class="col-md-6 col-xl-4 feature-card_wrapp wow fadeInUp" data-wow-delay=".4s">
+        <div class="feature-card th-ani">
+          <h3 class="box-title text-anime-style-2">Quality & Patient Safety</h3>
+          <p class="box-text">
+            Strict infection control, medication safety, clinical audits, and incident reporting.
+          </p>
+          <a href="{% url 'about_intro' %}" class="th-btn black-border">
+            More About Our Standards <i class="fa-regular fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Appointments -->
+      <div class="col-md-6 col-xl-4 feature-card_wrapp wow fadeInRight" data-wow-delay=".6s">
+        <div class="feature-card th-ani">
+          <h3 class="box-title text-anime-style-2">Your Wellness Journey</h3>
+          <p class="box-text">
+            Preventive screenings, chronic care, and specialty consults—guided by your goals.
+          </p>
+          <a href="{% url 'appointment' %}" class="th-btn black-border">
+            Make Appointment <i class="fa-regular fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Core Values -->
+<section class="project-area position-relative space overflow-hidden" id="project-sec">
+  <div class="container">
+    <div class="row justify-content-lg-between justify-content-center align-items-center">
+      <div class="col-lg-5">
+        <div class="title-area text-center text-lg-start">
+          <span class="sub-title text-anime-style-2">Hope Hospital Values</span>
+          <h2 class="sec-title text-anime-style-3">Our Core <span class="fw-normal">Values</span></h2>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="ps-xl-5 ms-xl-4 text-center text-lg-start">
+          <p class="fs-18 wow fadeInUp">
+            We deliver compassionate, evidence-based care with transparency and respect—putting patients and families first.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-area">
+      <div class="swiper th-slider projectSlide has-shadow" id="projectSlide"
+           data-slider-options='{"loop":true,"spaceBetween":56,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"}}}'>
+        <div class="swiper-wrapper">
+
+          <!-- Compassion -->
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="box-img global-img">
+                <img src="{% static 'assets/img/hope-image-6.jpg' %}" alt="Compassionate Care">
+              </div>
+              <div class="box-content">
+                <h3 class="box-title"><a href="{% url 'department' %}">Compassion</a></h3>
+                <p class="box-text">We listen, comfort, and care with dignity—every patient feels seen and supported.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clinical Excellence -->
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="box-img global-img">
+                <img src="{% static 'assets/img/hope-image-3.jpg' %}" alt="Clinical Excellence">
+              </div>
+              <div class="box-content">
+                <h3 class="box-title"><a href="{% url 'department' %}">Clinical Excellence</a></h3>
+                <p class="box-text">International guidelines, peer review, and continuous training for better outcomes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Patient First -->
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="box-img global-img">
+                <img src="{% static 'assets/img/hope-image-4.jpg' %}" alt="Patient First">
+              </div>
+              <div class="box-content">
+                <h3 class="box-title"><a href="{% url 'appointment' %}">Patient First</a></h3>
+                <p class="box-text">Shared decisions, clear communication, and trust at every step.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Integrity -->
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="box-img global-img">
+                <img src="{% static 'assets/img/hope-image-1.jpg' %}" alt="Integrity">
+              </div>
+              <div class="box-content">
+                <h3 class="box-title"><a href="{% url 'about_intro' %}">Integrity</a></h3>
+                <p class="box-text">Ethical practice, transparency, and strong data privacy safeguards.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 24/7 Emergency -->
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="box-img global-img">
+                <img src="{% static 'assets/img/hope-image-6.jpg' %}" alt="24/7 Emergency">
+              </div>
+              <div class="box-content">
+                <h3 class="box-title"><a href="tel:{{site_settings.phone1}}">24/7 Emergency</a></h3>
+                <p class="box-text">Ambulance network, rapid response, and on-site critical care round the clock.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Community & Education -->
+          <div class="swiper-slide">
+            <div class="project-card">
+              <div class="box-img global-img">
+                <img src="{% static 'assets/img/hope-image-2.jpg' %}" alt="Community & Education">
+              </div>
+              <div class="box-content">
+                <h3 class="box-title"><a href="{% url 'blogs' %}">Community & Education</a></h3>
+                <p class="box-text">Health camps, screenings, and awareness programs for a healthier community.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button data-slider-prev="#projectSlide" class="slider-arrow slider-prev"><i class="far fa-arrow-left"></i></button>
+      <button data-slider-next="#projectSlide" class="slider-arrow slider-next"><i class="far fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- Services Marquee -->
+<div class="marquee-area">
+  <div class="marquee-content positive-relative overflow-hidden">
+    <div class="marquee">
+      <div class="marquee-group">
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>24/7 Emergency</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>ICU & Critical Care</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Maternity & Neonatal</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Pediatrics</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Cardiology</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Orthopedics</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>General Surgery</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Dialysis</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Diagnostics & Imaging</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Pharmacy (24/7)</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Telemedicine</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Health Packages</span></div>
+      </div>
+
+      <div aria-hidden="true" class="marquee-group">
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>24/7 Emergency</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>ICU & Critical Care</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Maternity & Neonatal</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Pediatrics</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Cardiology</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Orthopedics</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>General Surgery</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Dialysis</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Diagnostics & Imaging</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Pharmacy (24/7)</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Telemedicine</span></div>
+        <div class="item"><img src="{% static 'assets/img/icon/plus.svg' %}" alt=""><span>Health Packages</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

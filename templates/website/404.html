@@ -1,0 +1,30 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="space">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            
+            <!-- Error Text -->
+            <div class="col-lg-5">
+                <div class="error-content text-center">
+                    <h2 class="error-title">Page Not Found</h2>
+                    <p class="error-text">Oops! The page you’re looking for doesn’t exist.</p>
+                    <a href="{% url 'home' %}" class="th-btn th-black">
+                        <i class="fal fa-home me-2"></i> Back To Home
+                    </a>
+                </div>
+            </div>
+
+            <!-- Error Image -->
+            <div class="col-lg-7 text-center">
+                <div class="error-img">
+                    <img src="{% static 'assets/img/theme-img/error.svg' %}" alt="404 image" class="img-fluid" class="w-75">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock content %}

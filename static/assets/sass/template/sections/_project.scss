@@ -1,0 +1,445 @@
+/* project card start ----------------------------*/
+
+
+@media (min-width: 1500px) {
+    .projectSlide {
+        margin-right: -700px !important;
+    }
+}
+
+
+.project-card {
+    .box-img {
+        border-radius: 16px;
+        margin-bottom: 32px;
+
+        img {
+            border-radius: 16px;
+        }
+    }
+
+    .box-title {
+        font-size: 40px;
+        margin-bottom: 10px;
+
+        @include xxl {
+            font-size: 30px;
+        }
+
+        @include xl {}
+    }
+
+    .box-text {
+        font-size: 18px;
+        max-width: 660px;
+        margin-bottom: -0.3rem;
+    }
+}
+
+.project-slider2 {
+    // margin: 0 -20% !important; 
+
+    .slider-controller {
+        width: 837px;
+        display: inline-flex;
+        justify-content: center;
+
+        @include md {
+            width: 90%;
+            margin: 0 20px;
+        }
+    }
+
+    .swiper-slide {
+        transition: all 0.5s ease-out;
+
+        &.swiper-slide-active {
+            width: 50% !important;
+
+            @include md {
+                width: 100% !important;
+            }
+
+            .box-img {
+                &:before {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+
+            .box-content {
+                bottom: 38px;
+                opacity: 1;
+            }
+
+            .icon-btn {
+                bottom: 38px;
+            }
+
+        }
+    }
+}
+
+.project-box {
+    position: relative;
+    overflow: hidden;
+    --space: 32px;
+
+    .box {
+        &-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+
+            @include md {
+                border-radius: 0;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(0deg, rgba(26, 33, 89, 0.6), rgba(26, 33, 89, 0.6));
+                opacity: 0;
+                visibility: hidden;
+                border-radius: inherit;
+                transition: all 0.4s ease;
+            }
+
+            img {
+                width: 100%;
+                height: 594px;
+                object-fit: cover;
+            }
+        }
+
+        &-content {
+            position: absolute;
+            left: var(--space);
+            bottom: -32px;
+            padding: 0 32px 0 0;
+            opacity: 0;
+            transition: all 0.4s ease;
+
+        }
+    }
+
+    .icon-btn {
+        position: absolute;
+        bottom: -52px;
+        right: 32px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: $theme-color;
+        border-radius: 32px;
+        color: $white-color;
+
+    }
+
+    .box-title {
+        color: $white-color;
+        font-size: 32px;
+        margin-bottom: 13px;
+
+        @include xs {
+            font-size: 28px;
+        }
+    }
+
+    .box-text {
+        font-size: 18px;
+        color: $white-color;
+        max-width: 656px;
+        margin-bottom: 28px;
+
+        @include lg {
+            max-width: 100%;
+        }
+    }
+
+    .tag {
+        padding: 8px 12px;
+        background-color: $white-color;
+        border-radius: 24px;
+        letter-spacing: 0.02em;
+        color: $theme-color;
+    }
+}
+
+/* project start --------------------*/
+.filter-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+    text-align: center;
+    margin-bottom: 60px;
+
+    @include lg {
+        margin-bottom: 50px;
+    }
+
+    @include md {
+        margin-top: -10px;
+        margin-bottom: 45px;
+        gap: 6px;
+    } 
+    .th-btn {
+        padding: 13.5px 24px;
+        border-radius: 24px;
+        &.active {
+            background-color: $title-color;
+            color: $white-color;
+        }
+    }
+
+    .tab-btn {
+        position: relative;
+        background: transparent;
+        border: none;
+        border-left: 1px solid transparent;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 300;
+        color: $body-color;
+        transition: all 0.4s ease-in-out;
+
+        &:not(:last-child) {
+            &:before {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 1px;
+                right: -35%;
+                top: 50%;
+                background-color: #D8DDE1;
+                transform: rotate(105deg);
+            }
+        }
+
+        &:hover,
+        &.active {
+            color: $title-color;
+            background: linear-gradient(90deg, #F8F8F8 0%, rgba(248, 248, 248, 0) 100%);
+            border: none;
+            border-left: 1px solid #121212;
+            border-radius: 10px;
+
+            &:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+
+
+/* project details -------------------------*/
+.widget_info {
+    background-color: #FFF2F2;
+    border-radius: 16px;
+    border: none;
+    padding: 34px 56px;
+
+    @include xl {
+        padding: 30px 30px;
+    }
+
+    .widget_title {
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 48px;
+        letter-spacing: 0.02em;
+        color: $title-color;
+        max-width: 307px;
+        @include vxs {
+            font-size: 25px;
+            line-height: 35px;
+        }
+    }
+
+    .table {
+        border: none;
+        margin-bottom: 0;
+
+        tbody {
+
+
+            tr {
+                th {
+                    border: none;
+                    font-weight: 600;
+                    font-size: 18px;
+                    letter-spacing: 0.02em;
+                    color: $title-color;
+                }
+
+                td {
+                    font-weight: 400;
+                    border: none;
+
+
+                }
+            }
+        }
+    }
+}
+
+.project-info {
+
+
+    &_subtitle {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    &_title {
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 0.02em;
+        color: $title-color;
+        display: flex;
+        align-items: center;
+        gap: 44px;
+        margin-bottom: 0;
+
+        a {
+            color: inherit;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+}
+
+.video-img3 {
+    position: relative;
+    z-index: 2;
+
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(25, 35, 97, 0.5), rgba(25, 35, 97, 0.5));
+        z-index: 1;
+    }
+
+    .video-play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        background-color: $white-color;
+
+        &:before,
+        &:after {
+            border-color: $white-color;
+        }
+
+        i {
+            color: $theme-color;
+        }
+    }
+}
+
+.project-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #EDEDED;
+    border-bottom: 1px solid #EDEDED;
+    padding: 17px 0;
+    margin-top: 22px;
+
+    .icon-btn {
+        --btn-size: 55px;
+        font-size: 16px;
+        border-radius: 99px;
+        border: none;
+        background-color: transparent;
+        border: 1px solid #EDEDED;
+        color: $title-color;
+
+        @include vxs {
+            --btn-size: 45px;
+        }
+
+        &:hover {
+            background-color: $theme-color;
+            color: $white-color;
+        }
+    }
+
+    .nav-btn {
+        color: $body-color;
+        font-family: $title-font;
+        font-weight: 500;
+
+        @include vxs {
+            font-size: 14px;
+        }
+
+        &:first-child {
+            .icon-btn {
+                margin-right: 10px;
+            }
+        }
+
+        &:last-child {
+            .icon-btn {
+                margin-left: 10px;
+            }
+        }
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+
+}
+
+/* project card start ----------------------------*/
+
+.social-links {
+    padding: 0;
+    display: inline-block;
+
+    .title {
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+        color: $white-color;
+        margin-right: 16px;
+        display: inline-block;
+
+    }
+
+
+    li {
+        display: inline-block;
+        list-style: none;
+        margin: 0 10px 0 0;
+    }
+
+    a {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        border: 1px solid rgba(183, 189, 222, 0.5);
+        border-radius: 50%;
+        margin: 0 10px 0 0;
+
+        &:hover {
+            background-color: $theme-color;
+            color: $white-color;
+            border-color: $theme-color;
+        }
+    }
+}

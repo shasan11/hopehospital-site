@@ -1,0 +1,123 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcumb-wrapper" >
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Contact Us</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="space overflow-hidden" id="contact-sec">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-xl-4">
+                <div class="contact-media-wrap">
+                    <!-- Location -->
+                    <div class="contact-media">
+                        <div class="icon-btn">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="box-title">Our Current Location</h5>
+                            <p class="box-text">
+                                {{ site_settings.address|default:"Not provided" |safe }}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Phone -->
+                    <div class="contact-media">
+                        <div class="icon-btn">
+                            <i class="fa-light fa-phone"></i>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="box-title">Phone Number</h5>
+                            <p class="box-text">
+                                {% if site_settings.phone1 %}
+                                    <a href="tel:{{ site_settings.phone1 }}">{{ site_settings.phone1 }}</a>
+                                {% endif %}
+                                {% if site_settings.phone2 %}
+                                    <a href="tel:{{ site_settings.phone2 }}">{{ site_settings.phone2 }}</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="contact-media">
+                        <div class="icon-btn">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="box-title">Email Address</h5>
+                             <a href="mailto:{{ site_settings.email1 }}">{{ site_settings.email1 }}</a>
+                             <a href="mailto:{{ site_settings.email2 }}">{{ site_settings.email2 }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-xl-8">
+                <form action="{% url 'contact' %}" method="POST" class="contact-form ajax-contact">
+                    {% csrf_token %}
+                    <h3 class="h4 mb-30 mt-n3">Do you have questions? Contact Us</h3>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                            <i class="fal fa-user"></i>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="tel" class="form-control" name="number" id="number" placeholder="Phone Number">
+                            <i class="fal fa-phone"></i>
+                        </div>
+                        <div class="form-group col-12">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="e-mail address*">
+                            <i class="fal fa-envelope"></i>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <select name="subject" id="subject" class="form-select nice-select">
+                                <option value="" disabled selected hidden>Select</option>
+                                {% for dept in nav_departments %}
+                                    <option value="{{ dept.name }}">{{ dept.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <textarea name="message" id="message" cols="30" rows="3" class="form-control" placeholder="Your Message"></textarea>
+                            <i class="fal fa-comment"></i>
+                        </div>
+                        <div class="form-btn mt-20 col-12">
+                            <button class="th-btn">Send Message</button>
+                        </div>
+                    </div>
+                    <p class="form-messages mb-0 mt-3"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Map -->
+<div class="">
+    <div class="contact-map">
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.6157556840694!2d85.34574607546703!3d27.698268476187778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19844954cda5%3A0x40054759ae817f90!2sHope%20Hospital!5e0!3m2!1sen!2snp!4v1756957050490!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+         <div class="contact-icon">
+            {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="Location Icon">
+            {% else %}
+                <img src="{% static 'assets/img/icon/location-dot.svg' %}" alt="">
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+    
+{% endblock content %}
+    

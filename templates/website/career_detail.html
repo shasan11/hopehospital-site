@@ -1,0 +1,116 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="breadcumb-wrapper">
+  <div class="container">
+    <div class="breadcumb-content">
+      <h1 class="breadcumb-title">{{ job.title }}</h1>
+      <ul class="breadcumb-menu">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'careers' %}">Careers</a></li>
+        <li>{{ job.reference }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section class="th-blog-wrapper blog-details space-top space-extra-bottom">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xxl-8 col-lg-10">
+        <article class="th-blog blog-single">
+          <!-- Header block -->
+          <div class="blog-content">
+            <div class="blog-meta mb-3">
+              <span class="author"><i class="fa-solid fa-building"></i> {{ job.department.name }}</span>
+              <span class="date"><i class="fa-solid fa-location-dot"></i> {{ job.location.name }}</span>
+              <span class="category"><i class="fa-solid fa-briefcase"></i> {{ job.get_employment_type_display }}</span>
+              <span class="category"><i class="fa-solid fa-rotate"></i> {{ job.get_shift_display }}</span>
+              <span class="category"><i class="fa-solid fa-users"></i> {{ job.openings }} openings</span>
+            </div>
+
+            {% if job.application_deadline %}
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+              <i class="fa-regular fa-calendar me-2"></i>
+              <div>Application deadline: <strong>{{ job.application_deadline|date:"M d, Y" }}</strong></div>
+            </div>
+            {% endif %}
+
+            {% if job.salary_min or job.salary_max %}
+              <p class="mb-2"><i class="fa-solid fa-money-bills"></i>
+                Salary:
+                {% if job.salary_min %}{{ job.currency }} {{ job.salary_min }}{% endif %}
+                {% if job.salary_min and job.salary_max %} – {% endif %}
+                {% if job.salary_max %}{{ job.currency }} {{ job.salary_max }}{% endif %}
+                {% if job.salary_type %}/ {{ job.get_salary_type_display|lower }}{% endif %}
+              </p>
+            {% endif %}
+
+            {% if job.specialties.all %}
+            <p class="mb-3"><i class="fa-solid fa-stethoscope"></i>
+              Specialties:
+              {% for s in job.specialties.all %}
+                <span class="badge bg-light text-dark me-1">{{ s.name }}</span>
+              {% endfor %}
+            </p>
+            {% endif %}
+
+            {% if job.credentials_required.all %}
+            <p class="mb-4"><i class="fa-regular fa-id-card"></i>
+              Required Credentials:
+              {% for c in job.credentials_required.all %}
+                <span class="badge bg-outline-primary me-1">{{ c.code }}</span>
+              {% endfor %}
+            </p>
+            {% endif %}
+
+            {% if job.short_description %}
+              <h2 class="blog-title mb-2">{{ job.short_description|safe }}</h2>
+            {% endif %}
+
+            <div class="blog-desc text-body">
+              {{ job.description|safe }}
+            </div>
+
+            {% if job.responsibilities %}
+            <div class="mt-4">
+              <h4>Responsibilities</h4>
+              <div class="text-body">{{ job.responsibilities|safe }}</div>
+            </div>
+            {% endif %}
+
+            {% if job.requirements %}
+            <div class="mt-4">
+              <h4>Requirements</h4>
+              <div class="text-body">{{ job.requirements|safe }}</div>
+            </div>
+            {% endif %}
+
+            {% if job.benefits %}
+            <div class="mt-4">
+              <h4>Benefits</h4>
+              <div class="text-body">{{ job.benefits|safe }}</div>
+            </div>
+            {% endif %}
+
+            <div class="mt-5 d-flex gap-2">
+              {% if can_apply and apply_mailto %}
+                <a class="th-btn" href="{{ apply_mailto }}">Apply via Email</a>
+              {% endif %}
+              {% if can_apply and job.external_apply_url %}
+                <a class="th-btn style4" target="_blank" href="{{ job.external_apply_url }}">Apply on External Site</a>
+              {% endif %}
+              {% if not can_apply %}
+                <span class="btn btn-outline-secondary disabled">Applications Closed</span>
+              {% endif %}
+            </div>
+
+        
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
