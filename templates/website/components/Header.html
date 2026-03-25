@@ -1,135 +1,166 @@
 {% load static %}
-<div class="sidemenu-wrapper ">
-    <div class="sidemenu-content">
-        <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
-        <div class="widget footer-widget mb-0">
-            <div class="th-widget-about">
-                <div class="about-logo">
-                    <a href="{%url 'home' %}"><img src="{{site_settings.logo.url}}" alt="hope"
-                            class="w-50 text-center"></a>
+
+<!-- Side Menu -->
+<div class="sidemenu-wrapper">
+    <div class="sidemenu-content d-flex flex-column h-100">
+        <button class="closeButton sideMenuCls align-self-end">
+            <i class="far fa-times"></i>
+        </button>
+
+        <div class="widget footer-widget mb-4">
+            <div class="th-widget-about text-center text-lg-start">
+                <div class="about-logo mb-3">
+                    <a href="{% url 'home' %}">
+                        <img src="{{ site_settings.logo.url }}" alt="hope" class="img-fluid w-50">
+                    </a>
                 </div>
-                <p class="about-text">Hope Hospital is a multi-specialty healthcare center in Sinamangal, Kathmandu,
-                    Nepal, dedicated to delivering compassionate, affordable, and reliable medical services. From
-                    Emergency & ICU to Diagnostics, Pharmacy, and specialized OPD clinics—our team ensures timely
-                    treatment and patient-first care.</p>
+                <p class="about-text mb-0">
+                    Hope Hospital is a multi-specialty healthcare center in Sinamangal, Kathmandu,
+                    Nepal, dedicated to delivering compassionate, affordable, and reliable medical services.
+                    From Emergency & ICU to Diagnostics, Pharmacy, and specialized OPD clinics—our team ensures timely
+                    treatment and patient-first care.
+                </p>
             </div>
         </div>
+
         <div class="widget footer-widget">
-            <h3 class="widget_title">Recent Posts</h3>
+            <h3 class="widget_title mb-3">Recent Posts</h3>
         </div>
     </div>
 </div>
 
+<!-- Search Popup -->
 <div class="popup-search-box d-none d-lg-block">
-    <button class="searchClose"><i class="fal fa-times"></i></button>
+    <button class="searchClose">
+        <i class="fal fa-times"></i>
+    </button>
     <form action="#">
         <input type="text" placeholder="What are you looking for?">
-        <button type="submit"><i class="fal fa-search"></i></button>
+        <button type="submit">
+            <i class="fal fa-search"></i>
+        </button>
     </form>
 </div>
 
+<!-- Mobile Menu -->
 <div class="th-menu-wrapper">
     <div class="th-menu-area text-center">
-        <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-        <div class="mobile-logo">
+        <button class="th-menu-toggle">
+            <i class="fal fa-times"></i>
+        </button>
+
+        <div class="mobile-logo mb-4">
             <a href="{% url 'home' %}">
                 {% if site_settings.logo %}
-                <img src="{{ site_settings.logo.url }}" alt="Logo">
+                    <img src="{{ site_settings.logo.url }}" alt="Logo" class="img-fluid">
                 {% else %}
-                <img src="{% static 'assets/img/logo.svg' %}" alt="Logo">
+                    <img src="{% static 'assets/img/logo.svg' %}" alt="Logo" class="img-fluid">
                 {% endif %}
             </a>
         </div>
-        <div class="th-mobile-menu">
+
+        <div class="th-mobile-menu text-start">
             <ul>
-                <!-- Home -->
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <!-- About -->
+
                 <li class="menu-item-has-children">
                     <a href="{% url 'about_intro' %}">About Us</a>
                     <ul class="sub-menu">
                         <li><a href="{% url 'about_intro' %}">Introduction</a></li>
                         <li><a href="{% url 'chairman_message' %}">Chairman Message</a></li>
-                        <li><a href="{% url 'team' %}">Team</a></li>
+                        <li><a href="{% url 'md_message' %}">Message From MD</a></li>
+                        <li><a href="{% url 'team' %}">Our Team</a></li>
                     </ul>
                 </li>
-                <!-- Services -->
+
                 <li class="menu-item-has-children">
                     <a href="{% url 'services' %}">Services</a>
                     <ul class="sub-menu">
                         {% for s in nav_services %}
-                        <li><a href="{% url 'services_details' s.slug %}">{{ s.name }}</a></li>
+                            <li><a href="{% url 'services_details' s.slug %}">{{ s.name }}</a></li>
                         {% empty %}
-                        <li><a href="{% url 'services' %}">All Services</a></li>
+                            <li><a href="{% url 'services' %}">All Services</a></li>
                         {% endfor %}
                     </ul>
                 </li>
-                <!-- Doctors -->
+
                 <li><a href="{% url 'doctors' %}">Doctors</a></li>
-                <!-- Departments -->
+
                 <li class="menu-item-has-children">
                     <a href="{% url 'department' %}">Departments</a>
                     <ul class="sub-menu">
                         {% for d in nav_departments %}
-                        <li><a href="{% url 'department_details' d.slug %}">{{ d.name }}</a></li>
+                            <li><a href="{% url 'department_details' d.slug %}">{{ d.name }}</a></li>
+                        {% empty %}
+                            <li><a href="{% url 'department' %}">All Departments</a></li>
                         {% endfor %}
                     </ul>
                 </li>
-                <!-- Packages -->
+
                 <li class="menu-item-has-children">
                     <a href="{% url 'packages' %}">Packages</a>
                     <ul class="sub-menu">
                         {% for p in nav_health_packages %}
-                        <li><a href="{% url 'packages_details' p.slug %}">{{ p.name }}</a></li>
+                            <li><a href="{% url 'packages_details' p.slug %}">{{ p.name }}</a></li>
+                        {% empty %}
+                            <li><a href="{% url 'packages' %}">All Packages</a></li>
                         {% endfor %}
                     </ul>
                 </li>
-                <!-- News -->
-                <li><a href="{% url 'latest_news' %}">Latest News</a></li>
-                <!-- Gallery -->
+
                 <li class="menu-item-has-children">
-                    <a href="{% url 'gallery' %}">Gallery</a>
+                    <a href="#">Media</a>
                     <ul class="sub-menu">
-                        {% for g in nav_galleries %}
-                        <li><a href="{% url 'gallery_details' g.slug %}">{{ g.name }}</a></li>
-                        {% endfor %}
+                        <li><a href="{% url 'blogs' %}">Blog</a></li>
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'latest_news' %}">Latest News</a></li>
+                        <li><a href="{% url 'careers' %}">Careers</a></li>
                     </ul>
                 </li>
-                <!-- Contact -->
+
                 <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
         </div>
     </div>
 </div>
 
+<!-- Header -->
 <header class="th-header header-layout2">
-    <div class="header-top">
-        <div class="container p-0">
-            <div class="row gy-2 justify-content-center justify-content-lg-between align-items-center">
-                <div class="col-auto">
+    <!-- Top Bar -->
+    <div class="header-top py-2">
+        <div class="container">
+            <div class="row gy-2 align-items-center justify-content-between">
+                <div class="col-lg-7">
                     <div class="header-links">
-                        <ul>
+                        <ul class="list-unstyled d-flex flex-column flex-md-row gap-2 gap-md-4 mb-0">
                             <li>
-                                <i class="fa-solid fa-envelope"></i>
+                                <i class="fa-solid fa-envelope me-2"></i>
                                 <a href="mailto:{{ site_settings.email|default:'info@example.com' }}">
                                     {{ site_settings.email1|default:"info@example.com" }}
                                 </a>
                             </li>
-                            <li class="d-none d-md-inline-block">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <span>{{ site_settings.address|default:"Address not set" |safe }}</span>
+                            <li>
+                                <i class="fa-solid fa-location-dot me-2"></i>
+                                <span>{{ site_settings.address|default:"Address not set"|safe }}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <div class="header-button">
-                        <a href="{% url 'contact' %}" class="th-btn">
-                            <img src="{% static 'assets/img/icon/alarm.svg' %}" alt="Emergency" />Track Appointment
+
+                <div class="col-lg-5">
+                    <div class="d-flex flex-column flex-md-row justify-content-lg-end align-items-stretch align-items-md-center gap-2">
+                        <a href="{% url 'contact' %}" class="th-btn text-center">
+                            <img src="{% static 'assets/img/icon/alarm.svg' %}" alt="Emergency" class="me-2">
+                            Track Appointment
                         </a>
+
                         <form class="search-form" action="{% url 'blogs' %}" method="get">
-                            <input type="text" name="q" placeholder="Search..." />
-                            <button type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search...">
+                                <button type="submit" class="btn btn-light">
+                                    <i class="fa-light fa-magnifying-glass"></i>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -138,51 +169,40 @@
     </div>
 
     <div class="sticky-wrapper">
-        <div class="p-0">
-            <div class="menu-area p-0">
-                <!-- Row 1: Logo & Buttons -->
-                <div class="row py-0 d-flex justify-content-between px-5">
-                    <!-- Logo -->
-                    <div class="col-6">
+        <div class="menu-area">
+            <div class="container">
+                <!-- Main Header Row -->
+                <div class="row align-items-center py-3">
+                    <div class="col-6 col-lg-3">
                         <div class="header-logo">
                             <a href="{% url 'home' %}">
-                                <img src="{{ site_settings.logo.url }}" alt="Logo" width="100" />
+                                {% if site_settings.logo %}
+                                    <img src="{{ site_settings.logo.url }}" alt="Logo" class="img-fluid" style="max-height: 70px;">
+                                {% else %}
+                                    <img src="{% static 'assets/img/logo.svg' %}" alt="Logo" class="img-fluid" style="max-height: 70px;">
+                                {% endif %}
                             </a>
                         </div>
                     </div>
-                    <!-- Right Buttons -->
-                    <div class="col-6 text-end">
-                        <div class="header-button d-flex justify-content-end gap-2">
-                            <!-- Hidden on mobile -->
-                            <a href="{% url 'appointment' %}" class="th-btn style2 d-none d-lg-inline-block">
-                                Make Appointment <i class="fa-solid fa-calendar-days ms-2"></i>
-                            </a>
-                            <button type="button" class="th-menu-toggle d-inline-block d-lg-none">
-                                <i class="far fa-bars"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Row 2: Navigation Menu -->
-                <div class="row p-0">
-                    <div class="col">
-                        <nav class="main-menu style2 bottom-sticky d-none d-lg-block"
-                            style="background-color:#4c237f; padding:0.5rem 0;">
-                            <ul class="d-flex justify-content-center" style="margin:0; padding:0; list-style:none;">
-                                <li><a href="{% url 'home' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">Home</a></li>
+                    <div class="col-lg-6 d-none d-lg-block">
+                        <nav class="main-menu">
+                            <ul class="d-flex justify-content-center align-items-center gap-1 mb-0">
+                                <li><a href="{% url 'home' %}">Home</a></li>
+
                                 <li class="menu-item-has-children">
-                                    <a href="{% url 'about_intro' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">About Us</a>
-                                    <ul class="sub-menu" style="background-color:#fff; list-style:none; padding:0;">
+                                    <a href="{% url 'about_intro' %}">About Us</a>
+                                    <ul class="sub-menu">
                                         <li><a href="{% url 'about_intro' %}">Introduction</a></li>
                                         <li><a href="{% url 'chairman_message' %}">Chairman Message</a></li>
                                         <li><a href="{% url 'md_message' %}">Message From MD</a></li>
                                         <li><a href="{% url 'team' %}">Our Team</a></li>
                                     </ul>
                                 </li>
+
                                 <li class="menu-item-has-children">
-                                    <a href="{% url 'services' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">Services</a>
-                                    <ul class="sub-menu" style="background-color:#fff; list-style:none; padding:0;">
+                                    <a href="{% url 'services' %}">Services</a>
+                                    <ul class="sub-menu">
                                         {% if nav_services %}
                                             {% for s in nav_services %}
                                                 <li><a href="{% url 'services_details' s.slug %}">{{ s.name }}</a></li>
@@ -192,9 +212,10 @@
                                         {% endif %}
                                     </ul>
                                 </li>
+
                                 <li class="menu-item-has-children">
-                                    <a href="{% url 'department' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">Departments</a>
-                                    <ul class="sub-menu" style="background-color:#fff; list-style:none; padding:0;">
+                                    <a href="{% url 'department' %}">Departments</a>
+                                    <ul class="sub-menu">
                                         {% for dept in nav_departments %}
                                             <li><a href="{% url 'department_details' dept.slug %}">{{ dept.name }}</a></li>
                                         {% empty %}
@@ -202,28 +223,45 @@
                                         {% endfor %}
                                     </ul>
                                 </li>
-                                <li><a href="{% url 'doctors' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">Doctors</a></li>
+
+                                <li><a href="{% url 'doctors' %}">Doctors</a></li>
+
                                 <li class="menu-item-has-children">
-                                    <a href="{% url 'packages' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">Packages</a>
-                                    <ul class="sub-menu" style="background-color:#fff; list-style:none; padding:0;">
+                                    <a href="{% url 'packages' %}">Packages</a>
+                                    <ul class="sub-menu">
                                         {% for p in nav_health_packages|slice:":10" %}
                                             <li><a href="{% url 'packages_details' p.slug %}">{{ p.name }}</a></li>
                                         {% endfor %}
                                         <li><a href="{% url 'packages' %}">All Packages</a></li>
                                     </ul>
                                 </li>
+
                                 <li class="menu-item-has-children">
-                                    <a href="{% url 'about_intro' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">Media</a>
-                                    <ul class="sub-menu" style="background-color:#fff; list-style:none; padding:0;">
+                                    <a href="#">Media</a>
+                                    <ul class="sub-menu">
                                         <li><a href="{% url 'blogs' %}">Blog</a></li>
                                         <li><a href="{% url 'gallery' %}">Gallery</a></li>
                                         <li><a href="{% url 'latest_news' %}">Latest News</a></li>
                                         <li><a href="{% url 'careers' %}">Careers</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{% url 'contact' %}" style="color:#fff; padding:10px 15px; display:block; font-weight:500;">Contact</a></li>
+
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
                             </ul>
                         </nav>
+                    </div>
+
+                    <div class="col-6 col-lg-3">
+                        <div class="d-flex justify-content-end align-items-center gap-2">
+                            <a href="{% url 'appointment' %}" class="th-btn style2 d-none d-lg-inline-block">
+                                Make Appointment
+                                <i class="fa-solid fa-calendar-days ms-2"></i>
+                            </a>
+
+                            <button type="button" class="th-menu-toggle d-inline-block d-lg-none">
+                                <i class="far fa-bars"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
