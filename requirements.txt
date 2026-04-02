@@ -1,1 +1,12 @@
-mysqlclient==2.2.8
+asgiref==3.9.1
+Django==5.2.5
+django-careers==0.2.1
+django-markdown-app==0.8.5.1
+django-tinymce==4.1.0
+django-unfold==0.65.0
+Markdown==3.8.2
+pillow==11.3.0
+PyMySQL==1.1.1
+sqlparse==0.5.3
+tzdata==2025.2
+whitenoise==6.9.0
