@@ -96,8 +96,15 @@ WSGI_APPLICATION = 'hopehospital.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'vedanica_hope_hospital_db',
+        'USER': 'vedanica_hope_hospital_db',
+        'PASSWORD': 'Balkot11@',
+        'HOST': '192.250.235.32',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
